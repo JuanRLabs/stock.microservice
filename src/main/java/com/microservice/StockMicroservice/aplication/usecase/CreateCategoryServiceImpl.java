@@ -25,7 +25,6 @@ public class CreateCategoryServiceImpl implements ICreateCategoryPort {
     @Transactional
     @Override
     public CategoryDomain create(CreateCategoryCommon common) {
-
         //Validación que no se repita una categoria
         boolean resp = categoryPersistenceAdapter.categoryExist(common.getName());
         CategoryEntity response = null;
@@ -36,7 +35,6 @@ public class CreateCategoryServiceImpl implements ICreateCategoryPort {
                     .name(common.getName())
                     .description(common.getDescription())
                     .build();
-
             //persistencia
             response = categoryPersistenceAdapter.save(data);
         }
