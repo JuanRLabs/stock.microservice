@@ -17,7 +17,6 @@ public class CategoryPersistenceAdapter implements ISaveCategoryPort , IValidate
         this.categoryMapper = categoryMapper;
     }
 
-
     @Override
     public CategoryEntity save(CategoryDomain category) {
         return categoryRepository.save(categoryMapper.domainToEntity(category));
@@ -26,7 +25,13 @@ public class CategoryPersistenceAdapter implements ISaveCategoryPort , IValidate
     @Override
     public boolean categoryExist(String name) {
         CategoryEntity response = categoryRepository.findByName(name);
-        if (response == null) return false;
-        else {return true;}
+        if (response == null)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 }

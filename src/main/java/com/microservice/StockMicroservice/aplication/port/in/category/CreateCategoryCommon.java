@@ -8,4 +8,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class CreateCategoryCommon  {String name;String description;}
+public class CreateCategoryCommon  {
+
+    private String name;
+
+    private String description;
+}
