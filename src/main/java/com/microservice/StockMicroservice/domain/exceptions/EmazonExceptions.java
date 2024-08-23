@@ -7,8 +7,8 @@ import java.util.List;
 
 public class EmazonExceptions extends RuntimeException {
 
-    private HttpStatus status;
-    private String description;
+    private final HttpStatus status;
+    private final String description;
     private List<String> reasons ;
 
     public EmazonExceptions(APIError error) {
@@ -33,4 +33,5 @@ public class EmazonExceptions extends RuntimeException {
     public List<String> getReasons() {
         return reasons;
     }
+
 }
