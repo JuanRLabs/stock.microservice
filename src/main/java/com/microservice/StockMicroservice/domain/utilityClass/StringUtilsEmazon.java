@@ -13,8 +13,6 @@ public class StringUtilsEmazon {
 
     public static boolean isValidLength(String input, int lengthMax) {
         String inputWithoutSpace = input.trim();
-        return inputWithoutSpace.length() <= lengthMax && inputWithoutSpace != "";
+        return inputWithoutSpace.length() <= lengthMax && inputWithoutSpace.equalsIgnoreCase("");
     }
-
-
 }

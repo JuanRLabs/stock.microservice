@@ -8,7 +8,9 @@ public enum APIError {
 
     BAD_FORMAT(HttpStatus.BAD_REQUEST, "The request not have a correct form"),
 
-    CATEGORY_WITH_SAME_NAME(HttpStatus.BAD_REQUEST, "There is a category with the same name");
+    CATEGORY_WITH_SAME_NAME(HttpStatus.BAD_REQUEST, "There is a category with the same name"),
+
+    ILLEGAL_PARAMS_REQUEST(HttpStatus.BAD_REQUEST, "The request params not have a correct format");
 
     private final HttpStatus status;
     private final String message;

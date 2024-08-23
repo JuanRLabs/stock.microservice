@@ -1,0 +1,35 @@
+[33mcommit 151479d7b480e442e2e025d27def4ba847c76c46[m[33m ([m[1;36mHEAD -> [m[1;32mfeature/HU-02_listar_categoria[m[33m)[m
+Author: juanrodriguez9 <juansebastianrodriguez904@gmail.com>
+Date:   Fri Aug 23 03:11:30 2024 -0500
+
+    optmizacion de codigo
+
+[33mcommit 0057baf96f60d3c04356648a39cf7a1668c79aef[m[33m ([m[1;31morigin/feature/HU-01_crear_categoria[m[33m, [m[1;32mfeature/HU-01_crear_categoria[m[33m)[m
+Author: juanrodriguez9 <juansebastianrodriguez904@gmail.com>
+Date:   Thu Aug 22 23:29:44 2024 -0500
+
+    creacion test unitarios e integracion
+
+[33mcommit 83b237bf35042d8064d7b555021046d67e56cae6[m
+Author: juanrodriguez9 <juansebastianrodriguez904@gmail.com>
+Date:   Thu Aug 22 19:25:23 2024 -0500
+
+    Se logra perfomance de persistir bd, desacoplar capas
+
+[33mcommit 8024f7fa848f8b307ea6ea22d2cd70786c7c6fd2[m[33m ([m[1;31morigin/dev[m[33m, [m[1;32mdev[m[33m)[m
+Author: juanrodriguez9 <juansebastianrodriguez904@gmail.com>
+Date:   Wed Aug 21 23:05:28 2024 -0500
+
+    ajuste eliminar folder demás
+
+[33mcommit c0726aaa970a0458cbbe0d001dbf303d34cec1a1[m[33m ([m[1;32mmaster[m[33m)[m
+Author: juanrodriguez9 <juansebastianrodriguez904@gmail.com>
+Date:   Wed Aug 21 22:55:08 2024 -0500
+
+    subiendo micro.stock a repo de organizacion juanrlab
+
+[33mcommit 6fe7a5e30ce7d8cd0a64361478a99e235e425976[m[33m ([m[1;31morigin/master[m[33m)[m
+Author: juanrodriguez9 <juansebastianrodriguez904@gmail.com>
+Date:   Wed Aug 21 14:34:36 2024 -0500
+
+    cargando proyecto al repositorio

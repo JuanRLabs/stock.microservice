@@ -1,12 +1,17 @@
 package com.microservice.StockMicroservice.infraestructura.out.persistence;
 
+import com.microservice.StockMicroservice.aplication.port.out.IFindAllCategoryPort;
 import com.microservice.StockMicroservice.aplication.port.out.ISaveCategoryPort;
 import com.microservice.StockMicroservice.aplication.port.out.IValidateCategoryExist;
 import com.microservice.StockMicroservice.domain.CategoryDomain;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
-public class CategoryPersistenceAdapter implements ISaveCategoryPort , IValidateCategoryExist {
+public class CategoryPersistenceAdapter implements ISaveCategoryPort , IValidateCategoryExist, IFindAllCategoryPort {
 
     private final CategoryRepository  categoryRepository;
     private final CategoryMapper categoryMapper;
@@ -33,5 +38,15 @@ public class CategoryPersistenceAdapter implements ISaveCategoryPort , IValidate
         {
             return true;
         }
+    }
+
+    @Override
+    public Page<CategoryDomain> findAllCategories(Pageable pageable) {
+         Page<CategoryEntity> list = categoryRepository.findAll(pageable);
+         return list.map(c -> CategoryDomain.builder()
+                .id(c.getId())
+                .name(c.getName())
+                .description(c.getDescription())
+                .build());
     }
 }

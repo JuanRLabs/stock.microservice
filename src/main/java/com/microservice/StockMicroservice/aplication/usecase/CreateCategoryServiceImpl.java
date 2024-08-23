@@ -41,8 +41,7 @@ public class CreateCategoryServiceImpl implements ICreateCategoryPort {
                         .build();
                 //persistencia
                 CategoryEntity response = categoryPersistenceAdapter.save(data);
-                CategoryDomain responseData = null;
-                return responseData = categoryMapper.entityToDomain(response);
+                return categoryMapper.entityToDomain(response);
             }
                 throw new EmazonExceptions(APIError.VALIDATION_ERROR);
         }else {
