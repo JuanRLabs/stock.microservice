@@ -1,17 +1,30 @@
 package com.microservice.stockmicroservice.adapters.driving.http.mapper;
 
+import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.entity.CategoryEntity;
 import com.microservice.stockmicroservice.adapters.driving.http.dto.response.CategoryResponse;
 import com.microservice.stockmicroservice.domain.model.Category;
+import com.microservice.stockmicroservice.domain.util.Pagination.Paginated;
 import org.mapstruct.Mapper;
-import org.springframework.data.domain.Page;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface ICategoryResponseMapper {
 
     CategoryResponse toCategoryResponse(Category category);
-
-
-    default Page<CategoryResponse> toCategoryResponsePage(Page<Category> categories){
-        return categories.map(this::toCategoryResponse);
+    default Paginated<CategoryResponse> toCategoryResponsePage(Paginated<Category> categories){
+        List<CategoryResponse> categoryResponses = new ArrayList<>();
+        for (Category category : categories.getContent()) {
+            if (category != null) {
+                CategoryResponse categoryResponse = toCategoryResponse(category);
+                categoryResponses.add(categoryResponse);
+            }
+        }
+        Paginated<CategoryResponse> paginatedResponse = new Paginated<>();
+        paginatedResponse.setContent(categoryResponses);
+        paginatedResponse.setTotalElements(categories.getTotalElements());
+        paginatedResponse.setTotalPages(categories.getTotalPages());
+        return paginatedResponse;
     }
 }

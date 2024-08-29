@@ -1,10 +1,11 @@
 package com.microservice.stockmicroservice.domain.spi.category;
 
 import com.microservice.stockmicroservice.domain.model.Category;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
+import com.microservice.stockmicroservice.domain.util.Pagination.PageableRequest;
+import com.microservice.stockmicroservice.domain.util.Pagination.Paginated;
 
 public interface ICategoryPersistencePort {
+
     void create(Category category);
-    Page<Category> listAllCategories(Pageable pageable);
+    Paginated<Category> listAllCategories(PageableRequest pageableRequest);
 }

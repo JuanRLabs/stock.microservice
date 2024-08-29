@@ -1,18 +1,26 @@
 package com.microservice.stockmicroservice.adapters.driven.jpa.mysql.adapter;
 
+import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.entity.CategoryEntity;
 import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.exception.CategoryAlreadyExistsException;
 import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.mapper.ICategoryEntityMapper;
 import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.repository.ICategoryRepository;
 import com.microservice.stockmicroservice.domain.exceptions.EmptyFieldException;
 import com.microservice.stockmicroservice.domain.model.Category;
 import com.microservice.stockmicroservice.domain.spi.category.ICategoryPersistencePort;
-import com.microservice.stockmicroservice.domain.utilityClass.DomainConstants;
-import com.microservice.stockmicroservice.domain.utilityClass.StringUtilsEmazon;
+import com.microservice.stockmicroservice.domain.util.DomainConstants;
+import com.microservice.stockmicroservice.domain.util.Pagination.PageableRequest;
+import com.microservice.stockmicroservice.domain.util.Pagination.Paginated;
+import com.microservice.stockmicroservice.domain.util.Pagination.Sorted;
+import com.microservice.stockmicroservice.domain.util.StringUtilsEmazon;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -32,7 +40,11 @@ public class CategoryAdapter implements ICategoryPersistencePort {
     }
 
     @Override
-    public Page<Category> listAllCategories(Pageable pageable) {
-        return categoryEntityMapper.toModelList(categoryRepository.findAll(pageable));
+    public Paginated<Category> listAllCategories(PageableRequest pageableRequest) {
+        Sort sort = Sort.by(Sort.Direction.fromString(pageableRequest.getSorted().name()), pageableRequest.getSort());
+        Pageable pageable = PageRequest.of(pageableRequest.getPage(), pageableRequest.getSize(), sort);
+        Page<CategoryEntity> responseRepository = categoryRepository.findAll(pageable);
+        List<Category> cagories = categoryEntityMapper.toModelList(responseRepository);
+        return  new Paginated<Category>(cagories, responseRepository.getTotalPages(), responseRepository.getTotalElements());
     }
 }

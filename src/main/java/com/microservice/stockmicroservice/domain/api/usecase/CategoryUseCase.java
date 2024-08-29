@@ -3,10 +3,8 @@ package com.microservice.stockmicroservice.domain.api.usecase;
 import com.microservice.stockmicroservice.domain.spi.category.ICategoryPersistencePort;
 import com.microservice.stockmicroservice.domain.api.ICategoryServicePort;
 import com.microservice.stockmicroservice.domain.model.Category;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import com.microservice.stockmicroservice.domain.util.Pagination.PageableRequest;
+import com.microservice.stockmicroservice.domain.util.Pagination.Paginated;
 
 public class CategoryUseCase implements ICategoryServicePort {
 
@@ -22,13 +20,8 @@ public class CategoryUseCase implements ICategoryServicePort {
     }
 
     @Override
-    public Page<Category> listAllCategories(int page, int size, String sort){
-        Sort.Direction direction = Sort.Direction.ASC;
-        if ("desc".equalsIgnoreCase(sort)){
-            direction = Sort.Direction.DESC;
-        }
-        Pageable pageable = PageRequest.of(page, size, Sort.by(direction, "name"));
-        return categoryPersistencePort.listAllCategories(pageable);
+    public Paginated<Category> listAllCategories(PageableRequest pageableRequest){
+        return categoryPersistencePort.listAllCategories(pageableRequest);
     }
 }
 

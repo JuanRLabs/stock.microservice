@@ -1,7 +1,7 @@
 package com.microservice.stockmicroservice.domain.model;
 
 import com.microservice.stockmicroservice.domain.exceptions.EmptyFieldException;
-import com.microservice.stockmicroservice.domain.utilityClass.DomainConstants;
+import com.microservice.stockmicroservice.domain.util.DomainConstants;
 
 public class Category {
     private Long id;

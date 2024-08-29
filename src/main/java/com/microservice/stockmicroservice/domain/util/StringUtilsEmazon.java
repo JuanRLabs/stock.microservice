@@ -1,4 +1,4 @@
-package com.microservice.stockmicroservice.domain.utilityClass;
+package com.microservice.stockmicroservice.domain.util;
 
 public class StringUtilsEmazon {
 

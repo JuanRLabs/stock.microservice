@@ -5,8 +5,10 @@ import com.microservice.stockmicroservice.adapters.driving.http.dto.response.Cat
 import com.microservice.stockmicroservice.adapters.driving.http.mapper.ICategoryRequestMapper;
 import com.microservice.stockmicroservice.adapters.driving.http.mapper.ICategoryResponseMapper;
 import com.microservice.stockmicroservice.domain.api.ICategoryServicePort;
+import com.microservice.stockmicroservice.domain.util.Pagination.PageableRequest;
+import com.microservice.stockmicroservice.domain.util.Pagination.Paginated;
+import com.microservice.stockmicroservice.domain.util.Pagination.Sorted;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,12 +29,10 @@ public class CategoryRestControllerAdapter {
     }
 
     @GetMapping("/")
-    public ResponseEntity<Page<CategoryResponse>> listALL(@RequestParam(value = "page", defaultValue = "0") int page,
-                                                          @RequestParam(value = "size", defaultValue = "10") int size,
-                                                          @RequestParam(value = "sort", required = false) String sort
-                                                        ){
+    public ResponseEntity<Paginated<CategoryResponse>> listALL(int page, int size, String sort, Sorted sorted){
+        PageableRequest pageableRequest = new PageableRequest(page, size, sort, sorted);
         return ResponseEntity.ok(categoryResponseMapper
-                .toCategoryResponsePage(categoryServicePort.listAllCategories(page, size, sort )));
+                .toCategoryResponsePage(categoryServicePort.listAllCategories(pageableRequest)));
     }
 
 }
