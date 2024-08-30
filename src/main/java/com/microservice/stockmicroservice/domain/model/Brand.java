@@ -7,8 +7,8 @@ public class Brand {
 
     public Brand(Long id, String name, String description) {
         this.id = id;
-        this.name = name;
-        this.description = description;
+        this.name = name.trim();
+        this.description = description.trim();
     }
 
     public Long getId() {
@@ -28,11 +28,11 @@ public class Brand {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = name.trim();
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.description = description.trim();
     }
 }
 
