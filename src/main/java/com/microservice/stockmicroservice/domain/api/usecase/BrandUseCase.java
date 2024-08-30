@@ -5,6 +5,8 @@ import com.microservice.stockmicroservice.domain.exceptions.IllegalArgumentDescr
 import com.microservice.stockmicroservice.domain.exceptions.IllegalArgumentNameException;
 import com.microservice.stockmicroservice.domain.model.Brand;
 import com.microservice.stockmicroservice.domain.spi.Brand.IBrandPersistencePort;
+import com.microservice.stockmicroservice.domain.util.Pagination.PageableRequest;
+import com.microservice.stockmicroservice.domain.util.Pagination.Paginated;
 import com.microservice.stockmicroservice.domain.util.StringUtilsEmazon;
 
 public class BrandUseCase implements IBrandServicePort {
@@ -26,6 +28,11 @@ public class BrandUseCase implements IBrandServicePort {
         }else {
             brandPersistencePort.create(brand);
         }
+    }
+
+    @Override
+    public Paginated<Brand> listAllBrands(PageableRequest pageableRequest) {
+        return brandPersistencePort.listAllBrands(pageableRequest);
     }
 
 }
