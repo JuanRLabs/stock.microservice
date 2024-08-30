@@ -1,6 +1,5 @@
 package com.microservice.stockmicroservice.adapters.driving.http.mapper;
 
-import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.entity.CategoryEntity;
 import com.microservice.stockmicroservice.adapters.driving.http.dto.response.CategoryResponse;
 import com.microservice.stockmicroservice.domain.model.Category;
 import com.microservice.stockmicroservice.domain.util.Pagination.Paginated;
@@ -14,6 +13,7 @@ import java.util.List;
 public interface ICategoryResponseMapper {
 
     CategoryResponse toCategoryResponse(Category category);
+
     default Paginated<CategoryResponse> toCategoryResponsePage(Paginated<Category> categories){
         List<CategoryResponse> categoryResponses = new ArrayList<>();
         for (Category category : categories.getContent().stream().toList()) {

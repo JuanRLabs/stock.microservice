@@ -1,11 +1,9 @@
 package com.microservice.stockmicroservice.adapters.driven.jpa.mysql.mapper;
 
 import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.entity.BrandEntity;
-import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.entity.CategoryEntity;
 import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.exception.CategoryNotFoundToMapper;
 import com.microservice.stockmicroservice.configuration.Constants;
 import com.microservice.stockmicroservice.domain.model.Brand;
-import com.microservice.stockmicroservice.domain.model.Category;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;

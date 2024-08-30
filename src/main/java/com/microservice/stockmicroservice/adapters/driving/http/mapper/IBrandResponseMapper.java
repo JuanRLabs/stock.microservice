@@ -11,7 +11,9 @@ import java.util.List;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface IBrandResponseMapper {
+
     BrandResponse toBrandResponse(Brand brand);
+
     default Paginated<BrandResponse> toResponsesPaginated(Paginated<Brand> brands)
    {
         List<BrandResponse> response = new ArrayList<>();
