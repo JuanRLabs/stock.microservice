@@ -1,20 +1,23 @@
 package com.microservice.stockmicroservice.adapters.driven.jpa.mysql.mapper;
 
 import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.entity.CategoryEntity;
+import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.exception.CategoryNotFoundToMapper;
+import com.microservice.stockmicroservice.configuration.Constants;
 import com.microservice.stockmicroservice.domain.model.Category;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+import org.mapstruct.ReportingPolicy;
 import org.springframework.data.domain.Page;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface ICategoryEntityMapper {
 
-  @Mapping(source = "id", target = "id")
-  @Mapping(source = "name", target = "name")
-  @Mapping(source = "description", target = "description")
+  @Mapping(target = "id", source = "id")
+  @Mapping(target = "name", source = "name")
+  @Mapping(target = "description", source = "description")
   Category toModel(CategoryEntity categoryEntity);
   CategoryEntity toEntity(Category category);
   default List<Category> toModelList(Page<CategoryEntity> categoryEntities){
@@ -23,6 +26,8 @@ public interface ICategoryEntityMapper {
       if (categoryEntity != null) {
         Category converted = toModel(categoryEntity);
         categories.add(converted);
+      }else {
+        throw new CategoryNotFoundToMapper(Constants.NO_DATA_FOUND_EXCEPTION_MESSAGE);
       }
     }
     return categories;

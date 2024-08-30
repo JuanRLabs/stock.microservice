@@ -30,7 +30,12 @@ public class CategoryRestControllerAdapter {
 
     @GetMapping("/")
     public ResponseEntity<Paginated<CategoryResponse>> listALL(int page, int size, String sort, Sorted sorted){
-        PageableRequest pageableRequest = new PageableRequest(page, size, sort, sorted);
+        PageableRequest pageableRequest = new PageableRequest.Builder()
+                .setPage(page)
+                .setSize(size)
+                .setSort(sort)
+                .setSorted(sorted)
+                .build();
         return ResponseEntity.ok(categoryResponseMapper
                 .toCategoryResponsePage(categoryServicePort.listAllCategories(pageableRequest)));
     }

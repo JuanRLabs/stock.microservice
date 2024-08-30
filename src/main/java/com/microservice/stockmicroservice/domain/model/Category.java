@@ -8,9 +8,6 @@ public class Category {
     private String name;
     private String description;
 
-    public Category() {
-    }
-
     public Category(Long id, String name, String description) {
         if (name.trim().isEmpty()) {
             throw new EmptyFieldException(DomainConstants.Field.NAME.toString());
@@ -23,15 +20,25 @@ public class Category {
         this.description = description;
     }
 
-    public Long getId() {return id;}
+    public Long getId() {
+        return id;
+    }
 
-    public void setId(Long id) {this.id = id;}
+    public String getName() {
+        return name;
+    }
 
-    public String getName() {return this.name;}
+    public String getDescription() {
+        return description;
+    }
 
-    public void setName(String name) {this.name = name;}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public String getDescription() {return this.description;}
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public void setDescription(String description) {
         this.description = description;

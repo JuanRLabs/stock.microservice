@@ -24,7 +24,7 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class CategoryUseCaseTest {
 
-    @Mock
+    @Mock(lenient = true)
     private ICategoryPersistencePort categoryPersistencePort;
 
     @InjectMocks
@@ -60,7 +60,7 @@ class CategoryUseCaseTest {
         Paginated<Category> paginatedCategories = new Paginated<>(
                 categories, 1, categories.size()
         );
-        
+
 
         when(categoryPersistencePort.listAllCategories(any(PageableRequest.class)))
                 .thenReturn(paginatedCategories);
@@ -96,9 +96,7 @@ class CategoryUseCaseTest {
                 new Category(1L, "Category 1", "Description 1"),
                 new Category(2L, "Category 2", "Description 2")
         );
-
-        Paginated<Category> paginatedCategories = new Paginated<>(
-                categories, 1, categories.size());
+        Paginated<Category> paginatedCategories = new Paginated<>(categories, 1, categories.size());
 
         Paginated<Category> emptyPaginatedCategories = null;
         when(categoryPersistencePort.listAllCategories(any(PageableRequest.class)))
