@@ -10,7 +10,6 @@ import com.microservice.stockmicroservice.domain.spi.category.ICategoryPersisten
 import com.microservice.stockmicroservice.domain.util.DomainConstants;
 import com.microservice.stockmicroservice.domain.util.Pagination.PageableRequest;
 import com.microservice.stockmicroservice.domain.util.Pagination.Paginated;
-import com.microservice.stockmicroservice.domain.util.Pagination.Sorted;
 import com.microservice.stockmicroservice.domain.util.StringUtilsEmazon;
 
 import lombok.RequiredArgsConstructor;
