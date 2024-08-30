@@ -1,9 +1,7 @@
 package com.microservice.stockmicroservice.adapters.driving.http.mapper;
 
 import com.microservice.stockmicroservice.adapters.driving.http.dto.response.BrandResponse;
-import com.microservice.stockmicroservice.adapters.driving.http.dto.response.CategoryResponse;
 import com.microservice.stockmicroservice.domain.model.Brand;
-import com.microservice.stockmicroservice.domain.model.Category;
 import com.microservice.stockmicroservice.domain.util.Pagination.Paginated;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
