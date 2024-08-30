@@ -16,8 +16,7 @@ public class BrandUseCase implements IBrandServicePort {
 
     @Override
     public void create(Brand brand) {
-        if (!(StringUtilsEmazon.isValidLength(brand.getName(), 50)
-                && (StringUtilsEmazon.isAlphabetic(brand.getName())))) {
+        if (StringUtilsEmazon.isEmpty(brand.getName()) || !StringUtilsEmazon.isValidLength(brand.getName(), 50) || !StringUtilsEmazon.isAlphabetic(brand.getName())) {
             throw new IllegalArgumentException(DomainConstants.FIELD_NAME_OR_DESCRIPTION_NULL_MESSAGE);
         } else {
             brandPersistencePort.create(brand);
