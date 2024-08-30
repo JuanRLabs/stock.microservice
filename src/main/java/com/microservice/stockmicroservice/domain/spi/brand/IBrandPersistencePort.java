@@ -1,4 +1,4 @@
-package com.microservice.stockmicroservice.domain.spi.Brand;
+package com.microservice.stockmicroservice.domain.spi.brand;
 
 import com.microservice.stockmicroservice.domain.model.Brand;
 import com.microservice.stockmicroservice.domain.util.Pagination.PageableRequest;

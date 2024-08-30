@@ -4,7 +4,7 @@ import com.microservice.stockmicroservice.domain.api.IBrandServicePort;
 import com.microservice.stockmicroservice.domain.exceptions.IllegalArgumentDescriptionException;
 import com.microservice.stockmicroservice.domain.exceptions.IllegalArgumentNameException;
 import com.microservice.stockmicroservice.domain.model.Brand;
-import com.microservice.stockmicroservice.domain.spi.Brand.IBrandPersistencePort;
+import com.microservice.stockmicroservice.domain.spi.brand.IBrandPersistencePort;
 import com.microservice.stockmicroservice.domain.util.Pagination.PageableRequest;
 import com.microservice.stockmicroservice.domain.util.Pagination.Paginated;
 import com.microservice.stockmicroservice.domain.util.StringUtilsEmazon;

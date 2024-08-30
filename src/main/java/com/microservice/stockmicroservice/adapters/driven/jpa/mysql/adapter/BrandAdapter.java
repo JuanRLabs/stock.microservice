@@ -5,7 +5,7 @@ import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.exception.Br
 import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.mapper.IBrandEntityMapper;
 import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.repository.IBrandRepository;
 import com.microservice.stockmicroservice.domain.model.Brand;
-import com.microservice.stockmicroservice.domain.spi.Brand.IBrandPersistencePort;
+import com.microservice.stockmicroservice.domain.spi.brand.IBrandPersistencePort;
 import com.microservice.stockmicroservice.domain.util.Pagination.PageableRequest;
 import com.microservice.stockmicroservice.domain.util.Pagination.Paginated;
 import lombok.RequiredArgsConstructor;
