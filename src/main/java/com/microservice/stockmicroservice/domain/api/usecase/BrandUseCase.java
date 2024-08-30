@@ -1,8 +1,11 @@
 package com.microservice.stockmicroservice.domain.api.usecase;
 
 import com.microservice.stockmicroservice.domain.api.IBrandServicePort;
+import com.microservice.stockmicroservice.domain.exceptions.IllegalArgumentException;
 import com.microservice.stockmicroservice.domain.model.Brand;
 import com.microservice.stockmicroservice.domain.spi.Brand.IBrandPersistencePort;
+import com.microservice.stockmicroservice.domain.util.DomainConstants;
+import com.microservice.stockmicroservice.domain.util.StringUtilsEmazon;
 
 public class BrandUseCase implements IBrandServicePort {
     private final IBrandPersistencePort brandPersistencePort;
@@ -13,6 +16,12 @@ public class BrandUseCase implements IBrandServicePort {
 
     @Override
     public void create(Brand brand) {
-        brandPersistencePort.create(brand);
+        if (!(StringUtilsEmazon.isValidLength(brand.getName(), 50)
+                && (StringUtilsEmazon.isAlphabetic(brand.getName())))) {
+            throw new IllegalArgumentException(DomainConstants.FIELD_NAME_OR_DESCRIPTION_NULL_MESSAGE);
+        } else {
+            brandPersistencePort.create(brand);
+        }
     }
+
 }
