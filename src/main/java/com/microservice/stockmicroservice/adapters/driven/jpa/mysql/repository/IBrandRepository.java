@@ -4,4 +4,5 @@ import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.entity.Brand
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface IBrandRepository extends JpaRepository<BrandEntity, Long> {
+    boolean existsByName(String name);
 }
