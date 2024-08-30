@@ -1,5 +1,6 @@
 package com.microservice.stockmicroservice.configuration.exceptionhandler;
 
+import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.exception.BrandAlreadyExistsException;
 import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.exception.CategoryAlreadyExistsException;
 import com.microservice.stockmicroservice.configuration.Constants;
 import com.microservice.stockmicroservice.domain.exceptions.EmptyFieldException;
@@ -31,6 +32,12 @@ public class ControllerAdvisor {
     @ExceptionHandler(IllegalArgumentException.class)
     public ResponseEntity<ExceptionResponse> handlerIllegalArgumentException(){
         return ResponseEntity.badRequest().body(new ExceptionResponse(DomainConstants.FIELD_PAGE_OR_SIZE_ILLEGAL_ARGUMENT_MESSAGE,
+                HttpStatus.BAD_REQUEST.toString(), LocalDateTime.now()));
+    }
+
+    @ExceptionHandler(BrandAlreadyExistsException.class)
+    public ResponseEntity<ExceptionResponse> handleBrandAlreadyExistsException(){
+        return ResponseEntity.badRequest().body(new ExceptionResponse(Constants.BRAND_ALREADY_EXISTS_EXCEPTION_MESSAGE,
                 HttpStatus.BAD_REQUEST.toString(), LocalDateTime.now()));
     }
 
