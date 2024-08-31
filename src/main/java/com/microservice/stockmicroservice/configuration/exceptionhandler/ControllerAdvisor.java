@@ -20,8 +20,7 @@ public class ControllerAdvisor {
 
     @ExceptionHandler(EmptyFieldException.class)
     public ResponseEntity<ExceptionResponse> handleEmptyFieldException(EmptyFieldException exception) {
-        return ResponseEntity.badRequest().body(new ExceptionResponse(
-                String.format(DomainConstants.FIELD_NAME_OR_DESCRIPTION_NULL_MESSAGE, exception.getMessage()),
+        return ResponseEntity.badRequest().body(new ExceptionResponse(String.format(exception.getMessage()),
                 HttpStatus.BAD_REQUEST.toString(), LocalDateTime.now()));
     }
 
@@ -32,8 +31,8 @@ public class ControllerAdvisor {
     }
 
     @ExceptionHandler({IllegalArgumentException.class})
-    public ResponseEntity<ExceptionResponse> handlerIllegalArgumentException(){
-        return ResponseEntity.badRequest().body(new ExceptionResponse(DomainConstants.FIELD_PAGE_OR_SIZE_ILLEGAL_ARGUMENT_MESSAGE,
+    public ResponseEntity<ExceptionResponse> handlerIllegalArgumentException(IllegalArgumentException exception){
+        return ResponseEntity.badRequest().body(new ExceptionResponse(String.format(exception.getMessage()),
                 HttpStatus.BAD_REQUEST.toString(), LocalDateTime.now()));
     }
 
