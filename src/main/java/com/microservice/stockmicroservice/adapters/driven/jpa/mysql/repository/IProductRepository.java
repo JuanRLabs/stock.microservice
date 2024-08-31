@@ -4,5 +4,6 @@ import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.entity.Produ
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface IProductRepository extends JpaRepository<ProductEntity, Long> {
+    ProductEntity findByName(String name);
 
 }
