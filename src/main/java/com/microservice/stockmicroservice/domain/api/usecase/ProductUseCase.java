@@ -5,8 +5,6 @@ import com.microservice.stockmicroservice.domain.exceptions.IllegalArgumentExcep
 import com.microservice.stockmicroservice.domain.model.Product;
 import com.microservice.stockmicroservice.domain.spi.product.IProductPersistencePort;
 
-import java.util.List;
-
 public class ProductUseCase implements IProductServicePort {
     private final IProductPersistencePort productPersistencePort;
 
@@ -20,7 +18,7 @@ public class ProductUseCase implements IProductServicePort {
         if (productPersistencePort.existsBrand(brandId))
         {
             productPersistencePort.create(product);
-        }
-        else{ throw new IllegalArgumentException("Marca no encontrada");}
+        }else
+        { throw new IllegalArgumentException("Marca no encontrada");}
     }
 }

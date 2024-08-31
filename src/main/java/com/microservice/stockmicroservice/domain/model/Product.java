@@ -16,22 +16,25 @@ public class Product {
 
     public Product(Long id, String name, String description, Long quantity, BigDecimal price, Long brandId, List<Long> categoriesId) {
             if (name == null || name.isEmpty()) {
-                throw new EmptyFieldException("El nombre no puede ser nulo o vacío");
+                throw new EmptyFieldException("The name cannot be null or empty");
             }
             if (description == null || description.isEmpty()) {
-                throw new EmptyFieldException("La descripción no puede ser nula o vacía");
+                throw new EmptyFieldException("The description cannot be null or empty");
             }
             if (quantity == null) {
-                throw new EmptyFieldException("La cantidad no puede ser nula");
+                throw new EmptyFieldException("The quantity cannot be null or empty");
             }
             if (price == null) {
-                throw new EmptyFieldException("El precio no puede ser nulo");
+                throw new EmptyFieldException("The price cannot be null or empty");
             }
             if (brandId == null) {
-                throw new EmptyFieldException("El id de la marca no puede ser nulo");
+                throw new EmptyFieldException("The brandId cannot be null or empty");
             }
             if (categoriesId == null || categoriesId.isEmpty()) {
-                throw new EmptyFieldException("La lista de categorías no puede ser nula o vacía");
+                throw new EmptyFieldException("The categoriesId list cannot be null or empty");
+            }
+            if ( categoriesId.size() > 3) {
+                throw new EmptyFieldException("The categoriesId list has not more than three elements");
             }
 
         this.id = id;
