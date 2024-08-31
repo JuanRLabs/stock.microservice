@@ -7,7 +7,7 @@ import com.microservice.stockmicroservice.domain.api.ICategoryServicePort;
 import com.microservice.stockmicroservice.domain.model.Category;
 import com.microservice.stockmicroservice.domain.util.Pagination.PageableRequest;
 import com.microservice.stockmicroservice.domain.util.Pagination.Paginated;
-import com.microservice.stockmicroservice.domain.util.StringUtilsEmazon;
+import com.microservice.stockmicroservice.domain.util.InputValidate;
 
 public class CategoryUseCase implements ICategoryServicePort {
 
@@ -19,13 +19,13 @@ public class CategoryUseCase implements ICategoryServicePort {
 
     @Override
     public void create(Category category) {
-        if (StringUtilsEmazon.isEmpty(category.getName())
-                || !StringUtilsEmazon.isValidLength(category.getName(), 50)
-                || !StringUtilsEmazon.isAlphabetic(category.getName()))
+        if (InputValidate.isEmpty(category.getName())
+                || !InputValidate.isValidLength(category.getName(), 50)
+                || !InputValidate.isAlphabetic(category.getName()))
         {
             throw new IllegalArgumentNameException();
         }
-        if (StringUtilsEmazon.isEmpty(category.getDescription()))
+        if (InputValidate.isEmpty(category.getDescription()))
         {
             throw new IllegalArgumentNameException();
         }
