@@ -1,11 +1,15 @@
 package com.microservice.stockmicroservice.adapters.driving.http.dto.response;
 
-import com.microservice.stockmicroservice.domain.model.Brand;
-import com.microservice.stockmicroservice.domain.model.Category;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 
 import java.math.BigDecimal;
-import java.util.Set;
+import java.util.List;
 
+@AllArgsConstructor
+@Data
+@Builder
 public class ProductResponse {
     private Long id;
     private String name;
@@ -13,6 +17,7 @@ public class ProductResponse {
     private Long quantity;
     private BigDecimal price;
     private BrandResponse brand;
-    private Set<Category> categories;
+    //ignorar el description de categoryResponse
+    private List<CategoryResponse> categories;
 
 }
