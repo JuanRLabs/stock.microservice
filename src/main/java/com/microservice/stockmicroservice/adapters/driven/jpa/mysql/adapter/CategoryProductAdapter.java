@@ -7,15 +7,18 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
 public class CategoryProductAdapter implements ICategoryProductPersistencePort {
     private final ICategoryProductRepository categoryProductRepository;
 
-
     @Override
-    public void createRelationsCategories(List<Long> categoriesId, Long productId) {
-        categoriesId.forEach(categoryId ->  categoryProductRepository.save(new CategoryProductEntity(categoryId, productId)));
+    public void createRelationsCategories(List<Long> categoryIds, Long productId) {
+        List<CategoryProductEntity> relations = categoryIds.stream()
+                .map(categoryId -> new CategoryProductEntity(categoryId, productId))
+                .collect(Collectors.toList());
+                categoryProductRepository.saveAll(relations);
     }
 }

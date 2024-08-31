@@ -15,8 +15,10 @@ public class CategoryProductEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "category_id")
     private Long categoryId;
 
+    @Column(name = "product_id")
     private Long productId;
 
     public CategoryProductEntity(long l, Long productId) {
