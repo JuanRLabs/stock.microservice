@@ -17,13 +17,10 @@ public class ProductUseCase implements IProductServicePort {
     @Override
     public void create(Product product) {
         Long brandId = product.getBrandId();
-        List<Long> categoriesId = product.getCategoriesId();
-        if (!productPersistencePort.existsBrand(brandId)) {
+        if (productPersistencePort.existsBrand(brandId))
+        {
             productPersistencePort.create(product);
-            Product productCreated = productPersistencePort.findByName(product.getName());
-            Long productId = productCreated.getId();
-
-
-        }throw new IllegalArgumentException("Marca no encontrada");
+        }
+        else{ throw new IllegalArgumentException("Marca no encontrada");}
     }
 }

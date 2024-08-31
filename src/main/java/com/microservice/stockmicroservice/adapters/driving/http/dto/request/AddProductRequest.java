@@ -4,17 +4,12 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public class AddProductRequest {
-    private Long id;
     private String name;
     private String description;
     private Long quantity;
     private BigDecimal price;
     private Long brandId;
     private List<Long> categoriesId;
-
-    public Long getId() {
-        return id;
-    }
 
     public String getName() {
         return name;
@@ -38,10 +33,6 @@ public class AddProductRequest {
 
     public List<Long> getCategoriesId() {
         return categoriesId;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public void setName(String name) {
