@@ -1,14 +1,11 @@
 package com.microservice.stockmicroservice.adapters.driven.jpa.mysql.entity;
 
-import com.microservice.stockmicroservice.domain.model.Brand;
-import com.microservice.stockmicroservice.domain.model.Category;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
-import java.util.Set;
 
 @Entity
 @Table(name = "product")
@@ -16,15 +13,23 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ProductEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
+
     private String description;
+
     private Long quantity;
+
     private BigDecimal price;
-    private Brand brand;
-    private Set<Category> categories;
+
+    @ManyToOne
+    @JoinColumn(name = "brand_id")
+    private BrandEntity brandId;
+
 
     public Long getId() {
         return id;
@@ -46,12 +51,8 @@ public class ProductEntity {
         return price;
     }
 
-    public Brand getBrand() {
-        return brand;
-    }
-
-    public Set<Category> getCategories() {
-        return categories;
+    public BrandEntity getBrandId() {
+        return brandId;
     }
 
     public void setId(Long id) {
@@ -74,11 +75,8 @@ public class ProductEntity {
         this.price = price;
     }
 
-    public void setBrand(Brand brand) {
-        this.brand = brand;
+    public void setBrandId(BrandEntity brandId) {
+        this.brandId = brandId;
     }
 
-    public void setCategories(Set<Category> categories) {
-        this.categories = categories;
-    }
 }

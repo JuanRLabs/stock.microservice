@@ -1,10 +1,7 @@
 package com.microservice.stockmicroservice.adapters.driving.http.dto.request;
 
-import com.microservice.stockmicroservice.domain.model.Brand;
-import com.microservice.stockmicroservice.domain.model.Category;
-
 import java.math.BigDecimal;
-import java.util.Set;
+import java.util.List;
 
 public class AddProductRequest {
     private Long id;
@@ -12,8 +9,8 @@ public class AddProductRequest {
     private String description;
     private Long quantity;
     private BigDecimal price;
-    private Brand brand;
-    private Set<Category> categories;
+    private Long brandId;
+    private List<Long> categoriesId;
 
     public Long getId() {
         return id;
@@ -35,12 +32,12 @@ public class AddProductRequest {
         return price;
     }
 
-    public Brand getBrand() {
-        return brand;
+    public Long getBrandId() {
+        return brandId;
     }
 
-    public Set<Category> getCategories() {
-        return categories;
+    public List<Long> getCategoriesId() {
+        return categoriesId;
     }
 
     public void setId(Long id) {
@@ -63,11 +60,11 @@ public class AddProductRequest {
         this.price = price;
     }
 
-    public void setBrand(Brand brand) {
-        this.brand = brand;
+    public void setBrandId(Long brandId) {
+        this.brandId = brandId;
     }
 
-    public void setCategories(Set<Category> categories) {
-        this.categories = categories;
+    public void setCategories(List<Long> categoriesId) {
+        this.categoriesId = categoriesId;
     }
 }

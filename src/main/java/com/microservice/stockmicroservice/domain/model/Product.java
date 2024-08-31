@@ -1,7 +1,9 @@
 package com.microservice.stockmicroservice.domain.model;
 
+import com.microservice.stockmicroservice.domain.exceptions.EmptyFieldException;
+
 import java.math.BigDecimal;
-import java.util.Set;
+import java.util.List;
 
 public class Product {
     private Long id;
@@ -9,16 +11,36 @@ public class Product {
     private String description;
     private Long quantity;
     private BigDecimal price;
-    private Brand brand;
-    private Set<Category> categories;
+    private Long brandId;
+    private List<Long> categoriesId;
 
-    public Product(Long id, String name, String description, Long quantity, BigDecimal price, Set<Category> categories) {
+    public Product(Long id, String name, String description, Long quantity, BigDecimal price, Long brandId, List<Long> categoriesId) {
+            if (name == null || name.isEmpty()) {
+                throw new EmptyFieldException("El nombre no puede ser nulo o vacío");
+            }
+            if (description == null || description.isEmpty()) {
+                throw new EmptyFieldException("La descripción no puede ser nula o vacía");
+            }
+            if (quantity == null) {
+                throw new EmptyFieldException("La cantidad no puede ser nula");
+            }
+            if (price == null) {
+                throw new EmptyFieldException("El precio no puede ser nulo");
+            }
+            if (brandId == null) {
+                throw new EmptyFieldException("El id de la marca no puede ser nulo");
+            }
+            if (categoriesId == null || categoriesId.isEmpty()) {
+                throw new EmptyFieldException("La lista de categorías no puede ser nula o vacía");
+            }
+
         this.id = id;
         this.name = name;
         this.description = description;
         this.quantity = quantity;
         this.price = price;
-        this.categories = categories;
+        this.brandId = brandId;
+        this.categoriesId = categoriesId;
     }
 
     public Long getId() {
@@ -41,12 +63,12 @@ public class Product {
         return price;
     }
 
-    public Brand getBrand() {
-        return brand;
+    public Long getBrandId() {
+        return brandId;
     }
 
-    public Set<Category> getCategories() {
-        return categories;
+    public List<Long> getCategoriesId() {
+        return categoriesId;
     }
 
     public void setId(Long id) {
@@ -69,11 +91,11 @@ public class Product {
         this.price = price;
     }
 
-    public void setBrand(Brand brand) {
-        this.brand = brand;
+    public void setBrandId(Long brandId) {
+        this.brandId = brandId;
     }
 
-    public void setCategories(Set<Category> categories) {
-        this.categories = categories;
+    public void setCategories(List<Long> categoriesId) {
+        this.categoriesId = categoriesId;
     }
 }
