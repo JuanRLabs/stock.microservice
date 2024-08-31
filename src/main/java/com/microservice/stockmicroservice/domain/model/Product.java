@@ -36,6 +36,9 @@ public class Product {
             if ( categoriesId.size() > 3) {
                 throw new EmptyFieldException("The categoriesId list has not more than three elements");
             }
+            if (categoriesId.stream().distinct().count() != categoriesId.size()){
+            throw new EmptyFieldException("The categoriesId list has not content duplicate elements");
+            }
 
         this.id = id;
         this.name = name;

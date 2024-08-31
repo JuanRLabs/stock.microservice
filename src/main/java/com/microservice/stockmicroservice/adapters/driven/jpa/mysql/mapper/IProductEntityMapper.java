@@ -1,8 +1,6 @@
 package com.microservice.stockmicroservice.adapters.driven.jpa.mysql.mapper;
 
-import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.entity.BrandEntity;
 import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.entity.ProductEntity;
-import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.repository.IBrandRepository;
 import com.microservice.stockmicroservice.domain.model.Product;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
