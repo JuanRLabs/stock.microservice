@@ -1,7 +1,7 @@
 package com.microservice.stockmicroservice.configuration.exceptionhandler;
 
 import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.exception.BrandAlreadyExistsException;
-import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.exception.CategoryAlreadyExistsException;
+import com.microservice.stockmicroservice.domain.exceptions.CategoryAlreadyExistsException;
 import com.microservice.stockmicroservice.configuration.Constants;
 import com.microservice.stockmicroservice.domain.exceptions.EmptyFieldException;
 import com.microservice.stockmicroservice.domain.exceptions.IllegalArgumentDescriptionException;
