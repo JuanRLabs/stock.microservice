@@ -28,6 +28,6 @@ public class ProductAdapter implements IProductPersistencePort {
 
     @Override
     public Product findByName(String name) {
-        return productEntityMapper.toModel(productRepository.findByName(name));
+        return productEntityMapper.toModelCreated(productRepository.findByName(name));
     }
 }

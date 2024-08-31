@@ -20,9 +20,9 @@ public class ProductUseCase implements IProductServicePort {
     @Override
     public void create(Product product) {
         Long brandId = product.getBrandId();
-        List<Long> categoriesId = product.getCategoriesId();
         if (productPersistencePort.existsBrand(brandId))
         {
+            List<Long> categoriesId = product.getCategoriesId();
             productPersistencePort.create(product);
             Product dataProduct = productPersistencePort.findByName(product.getName());
             categoryProductPersistencePort.createRelationsCategories(categoriesId, dataProduct.getId());

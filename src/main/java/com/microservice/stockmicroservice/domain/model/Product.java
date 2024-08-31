@@ -33,11 +33,11 @@ public class Product {
             if (categoriesId == null || categoriesId.isEmpty()) {
                 throw new EmptyFieldException("The categoriesId list cannot be null or empty");
             }
-            if ( categoriesId.size() > 3) {
-                throw new EmptyFieldException("The categoriesId list has not more than three elements");
-            }
             if (categoriesId.stream().distinct().count() != categoriesId.size()){
             throw new EmptyFieldException("The categoriesId list has not content duplicate elements");
+            }
+            if ( categoriesId.size() > 3) {
+                throw new EmptyFieldException("The categoriesId list has not more than three elements");
             }
 
         this.id = id;
@@ -102,6 +102,10 @@ public class Product {
     }
 
     public void setCategories(List<Long> categoriesId) {
+        if (categoriesId.isEmpty()){
+            categoriesId.add(1L);
+        }
         this.categoriesId = categoriesId;
+
     }
 }
