@@ -24,6 +24,4 @@ public class ProductRestControllerAdapter {
         return ResponseEntity.status(HttpStatus.CREATED ).build();
     }
 
-
-
 }
