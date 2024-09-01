@@ -102,10 +102,6 @@ public class Product {
     }
 
     public void setCategories(List<Long> categoriesId) {
-        if (categoriesId.isEmpty()){
-            categoriesId.add(1L);
-        }
         this.categoriesId = categoriesId;
-
     }
 }

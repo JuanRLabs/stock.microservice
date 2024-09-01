@@ -6,13 +6,18 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)// Brand beans
 public interface IProductEntityMapper {
 
     @Mapping(target = "id", ignore = true)
     ProductEntity toEntity(Product product);
 
-    @Mapping(target = "categoriesId", ignore = true)
+    default List<Long> getDefaultCategoriesId() {
+        return List.of(1L);
+    }
+    @Mapping(target = "categoriesId", expression = "java( getDefaultCategoriesId() )")
     Product toModelCreated(ProductEntity productEntity);
 
     @Mapping(source = "brandId", target = "brandId")
