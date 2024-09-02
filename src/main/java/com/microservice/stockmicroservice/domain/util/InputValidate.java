@@ -1,6 +1,6 @@
 package com.microservice.stockmicroservice.domain.util;
 
-public class StringUtilsEmazon {
+public class InputValidate {
 
     private StringUtilsEmazon() {
     }
