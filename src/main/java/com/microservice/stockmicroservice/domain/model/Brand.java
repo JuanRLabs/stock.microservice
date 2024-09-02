@@ -1,11 +1,21 @@
 package com.microservice.stockmicroservice.domain.model;
 
+import com.microservice.stockmicroservice.domain.exceptions.EmptyFieldException;
+import com.microservice.stockmicroservice.domain.exceptions.IllegalArgumentNameException;
+import com.microservice.stockmicroservice.domain.util.DomainConstants;
+
 public class Brand {
     private Long id;
     private String name;
     private String description;
 
     public Brand(Long id, String name, String description) {
+        if (name.trim().isEmpty()) {
+            throw new IllegalArgumentNameException();
+        }
+        if (description.trim().isEmpty()) {
+            throw new IllegalArgumentNameException();
+        }
         this.id = id;
         this.name = name.trim();
         this.description = description.trim();

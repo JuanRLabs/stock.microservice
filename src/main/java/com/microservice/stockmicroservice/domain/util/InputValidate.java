@@ -1,9 +1,6 @@
 package com.microservice.stockmicroservice.domain.util;
 
-public class StringUtilsEmazon {
-
-    private StringUtilsEmazon() {
-    }
+public class InputValidate {
 
     public static boolean isAlphabetic(String str) {
         for (char c : str.toCharArray()) {
