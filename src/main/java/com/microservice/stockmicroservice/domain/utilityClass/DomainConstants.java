@@ -11,7 +11,7 @@ public final class DomainConstants {
     }
 
     public static final String FIELD_NAME_OR_DESCRIPTION_NULL_MESSAGE = "Fields 'name' 'description' cannot be null";
-    public static final String FIELD_NAME_NULL_MESSAGE = "Field 'name' cannot be null";
-    public static final String FIELD_DESCRIPTION_NULL_MESSAGE = "Field 'description' cannot be null";
+    public static final String FIELD_NAME_NULL_OR_ILLEGAL_MESSAGE = "Field 'name' cannot be null, too long or numeric";
+    public static final String FIELD_DESCRIPTION_NULL_OR_ILLEGAL_MESSAGE = "Field 'description' cannot be null or too long";
 
 }

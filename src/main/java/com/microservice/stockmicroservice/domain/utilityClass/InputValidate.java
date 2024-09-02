@@ -1,10 +1,10 @@
 package com.microservice.stockmicroservice.domain.utilityClass;
 
-public class StringUtilsEmazon {
+public class InputValidate {
 
     public static boolean isAlphabetic(String str) {
         for (char c : str.toCharArray()) {
-            if (!Character.isLetter(c)) {
+            if (!Character.isLetter(c) && !Character.isWhitespace(c)) {
                 return false;
             }
         }
@@ -14,5 +14,9 @@ public class StringUtilsEmazon {
     public static boolean isValidLength(String input, int lengthMax) {
         String inputWithoutSpace = input.trim();
         return inputWithoutSpace.length() <= lengthMax ;
+    }
+
+    public static boolean isEmpty(String str) {
+        return str == null || str.trim().isEmpty();
     }
 }

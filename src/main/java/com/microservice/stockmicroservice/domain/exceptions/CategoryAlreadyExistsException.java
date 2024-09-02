@@ -1,4 +1,4 @@
-package com.microservice.stockmicroservice.adapters.driven.jpa.mysql.exception;
+package com.microservice.stockmicroservice.domain.exceptions;
 
 public class CategoryAlreadyExistsException extends RuntimeException {
     public CategoryAlreadyExistsException() {
