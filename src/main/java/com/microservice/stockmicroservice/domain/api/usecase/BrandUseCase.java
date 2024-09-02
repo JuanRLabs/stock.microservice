@@ -1,11 +1,12 @@
 package com.microservice.stockmicroservice.domain.api.usecase;
 
 import com.microservice.stockmicroservice.domain.api.IBrandServicePort;
+import com.microservice.stockmicroservice.domain.exceptions.BrandAlreadyExistsException;
 import com.microservice.stockmicroservice.domain.exceptions.IllegalArgumentDescriptionException;
 import com.microservice.stockmicroservice.domain.exceptions.IllegalArgumentNameException;
 import com.microservice.stockmicroservice.domain.model.Brand;
 import com.microservice.stockmicroservice.domain.spi.Brand.IBrandPersistencePort;
-import com.microservice.stockmicroservice.domain.util.StringUtilsEmazon;
+import com.microservice.stockmicroservice.domain.util.InputValidate;
 
 public class BrandUseCase implements IBrandServicePort {
     private final IBrandPersistencePort brandPersistencePort;
@@ -16,16 +17,18 @@ public class BrandUseCase implements IBrandServicePort {
 
     @Override
     public void create(Brand brand) {
-        if (StringUtilsEmazon.isEmpty(brand.getName())
-                || !StringUtilsEmazon.isValidLength(brand.getName(), 50)
-                || !StringUtilsEmazon.isAlphabetic(brand.getName())) {
+        if (InputValidate.isEmpty(brand.getName())
+                || !InputValidate.isValidLength(brand.getName(), 50)
+                || !InputValidate.isAlphabetic(brand.getName())) {
             throw new IllegalArgumentNameException();
-        } else if (StringUtilsEmazon.isEmpty(brand.getDescription())
-                || !StringUtilsEmazon.isValidLength(brand.getDescription(), 120)) {
-            throw new IllegalArgumentDescriptionException();
-        }else {
-            brandPersistencePort.create(brand);
         }
+        if (InputValidate.isEmpty(brand.getDescription())
+                || !InputValidate.isValidLength(brand.getDescription(), 120)) {
+            throw new IllegalArgumentDescriptionException();
+        }
+        if (!brandPersistencePort.existsByName(brand.getName())) {
+            brandPersistencePort.create(brand);
+        } throw new BrandAlreadyExistsException();
     }
 
 }
