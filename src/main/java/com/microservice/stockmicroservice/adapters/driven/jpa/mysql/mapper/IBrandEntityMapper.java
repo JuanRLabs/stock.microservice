@@ -11,25 +11,24 @@ import org.springframework.data.domain.Page;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface IBrandEntityMapper {
+
+    Brand toModel(Optional<BrandEntity> brandEntity);
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "name", source = "name")
     @Mapping(target = "description", source = "description")
     BrandEntity toEntity(Brand brand);
-    @Mapping(target = "id", source = "id")
-    @Mapping(target = "name", source = "name")
-    @Mapping(target = "description", source = "description")
-    Brand toModel(BrandEntity brandEntity);
 
     default List<Brand> toModelList(Page<BrandEntity> brandEntities)
     {
         List<Brand> brands = new ArrayList<>();
         for (BrandEntity brandEntity : brandEntities) {
             if (brandEntity != null) {
-                Brand converted = toModel(brandEntity);
+                Brand converted = toModel(Optional.of(brandEntity));
                 brands.add(converted);
             }else {
                 throw new CategoryNotFoundToMapper(Constants.NO_DATA_FOUND_EXCEPTION_MESSAGE);

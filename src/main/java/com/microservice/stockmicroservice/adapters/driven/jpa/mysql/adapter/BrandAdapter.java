@@ -35,6 +35,11 @@ public class BrandAdapter implements IBrandPersistencePort {
     }
 
     @Override
+    public Brand getById(Long id) {
+        return brandEntityMapper.toModel(brandRepository.findById(id)) ;
+    }
+
+    @Override
     public Paginated<Brand> listAllBrands(PageableRequest pageableRequest) {
         Sort sort = Sort.by(Sort.Direction.fromString(pageableRequest.getSorted().name()), pageableRequest.getSort());
         Pageable pageable = PageRequest.of(pageableRequest.getPage(), pageableRequest.getSize(), sort);
