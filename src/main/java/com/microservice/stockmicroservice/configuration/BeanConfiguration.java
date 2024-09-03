@@ -65,7 +65,7 @@ public class BeanConfiguration {
 
     @Bean
     public IProductServicePort productServicePort(){
-        return new ProductUseCase(productPersistencePort(), categoryProductPersistencePort());
+        return new ProductUseCase(productPersistencePort(), categoryProductPersistencePort(), brandPersistencePort());
     }
 
     // CategoryPerProduct beans
