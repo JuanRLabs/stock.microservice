@@ -12,6 +12,7 @@ import java.util.List;
 public interface IProductEntityMapper {
 
     @Mapping(target = "id", ignore = true)
+    @Mapping(target = "brandId", source = "brand")
     ProductEntity toEntity(Product product);
 
     default List<Long> getDefaultCategoriesId() {
@@ -20,8 +21,8 @@ public interface IProductEntityMapper {
     @Mapping(target = "categoriesId", expression = "java( getDefaultCategoriesId() )")
     Product toModelCreated(ProductEntity productEntity);
 
-    @Mapping(source = "brandId", target = "brandId")
-    Product toModelOk(ProductEntity productEntity);
+//    @Mapping(source = "brandId", target = "brand")
+//    Product toModelOk(ProductEntity productEntity);
 
 
 }

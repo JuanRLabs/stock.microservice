@@ -26,7 +26,9 @@ public class ProductEntity {
 
     private BigDecimal price;
 
-    private Long brandId;
+    @ManyToOne
+    @JoinColumn(name = "brand_id")
+    private BrandEntity brandId;
 
 
     public Long getId() {
@@ -49,7 +51,7 @@ public class ProductEntity {
         return price;
     }
 
-    public Long getBrandId() {
+    public BrandEntity getBrandId() {
         return brandId;
     }
 
@@ -73,7 +75,7 @@ public class ProductEntity {
         this.price = price;
     }
 
-    public void setBrandId(Long brandId) {
+    public void setBrandId(BrandEntity brandId) {
         this.brandId = brandId;
     }
 }

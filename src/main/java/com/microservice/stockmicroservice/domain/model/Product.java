@@ -11,10 +11,13 @@ public class Product {
     private String description;
     private Long quantity;
     private BigDecimal price;
-    private Long brandId;
+    private Brand brand;
     private List<Long> categoriesId;
 
-    public Product(Long id, String name, String description, Long quantity, BigDecimal price, Long brandId, List<Long> categoriesId) {
+    public Product() {
+    }
+
+    public Product(Long id, String name, String description, Long quantity, BigDecimal price, Brand brand, List<Long> categoriesId) {
             if (name == null || name.isEmpty()) {
                 throw new EmptyFieldException("The name cannot be null or empty");
             }
@@ -27,8 +30,8 @@ public class Product {
             if (price == null) {
                 throw new EmptyFieldException("The price cannot be null or empty");
             }
-            if (brandId == null) {
-                throw new EmptyFieldException("The brandId cannot be null or empty");
+            if (brand == null) {
+                throw new EmptyFieldException("The brand cannot be null or empty");
             }
             if (categoriesId == null || categoriesId.isEmpty()) {
                 throw new EmptyFieldException("The categoriesId list cannot be null or empty");
@@ -45,7 +48,7 @@ public class Product {
         this.description = description;
         this.quantity = quantity;
         this.price = price;
-        this.brandId = brandId;
+        this.brand = brand;
         this.categoriesId = categoriesId;
     }
 
@@ -69,8 +72,8 @@ public class Product {
         return price;
     }
 
-    public Long getBrandId() {
-        return brandId;
+    public Brand getBrand() {
+        return brand;
     }
 
     public List<Long> getCategoriesId() {
@@ -97,8 +100,8 @@ public class Product {
         this.price = price;
     }
 
-    public void setBrandId(Long brandId) {
-        this.brandId = brandId;
+    public void setBrand(Brand brand) {
+        this.brand = brand;
     }
 
     public void setCategories(List<Long> categoriesId) {
