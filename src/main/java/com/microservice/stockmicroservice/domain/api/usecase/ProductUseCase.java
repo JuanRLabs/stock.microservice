@@ -35,9 +35,12 @@ public class ProductUseCase implements IProductServicePort {
         }else
         { throw new IllegalArgumentException("Marca no encontrada");}
     }
-//
+
 //    @Override
 //    public Product listAllProducts(PageableRequest pageableRequest) {
-//        return null;
+//        Product product = new Product();
+//        productPersistencePort.
+//        productPersistencePort.
+//        return ;
 //    }
 }

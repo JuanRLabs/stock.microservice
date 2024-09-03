@@ -4,7 +4,7 @@ import com.microservice.stockmicroservice.domain.exceptions.IllegalArgumentExcep
 import com.microservice.stockmicroservice.domain.util.DomainConstants;
 
 public class PageableRequest {
-    private int page;
+    private int page = 1;
     private int size;
     private String sort;
     private Sorted sorted;
