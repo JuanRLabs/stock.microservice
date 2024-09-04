@@ -1,7 +1,6 @@
 package com.microservice.stockmicroservice.adapters.driven.jpa.mysql.adapter;
 
 import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.entity.BrandEntity;
-import com.microservice.stockmicroservice.domain.exceptions.BrandAlreadyExistsException;
 import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.mapper.IBrandEntityMapper;
 import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.repository.IBrandRepository;
 import com.microservice.stockmicroservice.domain.model.Brand;
@@ -32,6 +31,11 @@ public class BrandAdapter implements IBrandPersistencePort {
     @Override
     public boolean existsByName(String name) {
         return brandRepository.existsByName(name);
+    }
+
+    @Override
+    public boolean existsBrand(Long id) {
+        return brandRepository.existsById(id);
     }
 
     @Override

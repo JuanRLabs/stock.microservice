@@ -8,6 +8,8 @@ import com.microservice.stockmicroservice.domain.spi.product.IProductPersistence
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 @RequiredArgsConstructor
 public class ProductAdapter implements IProductPersistencePort {
@@ -21,12 +23,14 @@ public class ProductAdapter implements IProductPersistencePort {
     }
 
     @Override
-    public boolean existsBrand(Long id) {
-        return brandRepository.existsById(id);
-    }
-
-    @Override
     public Product findByName(String name) {
         return productEntityMapper.toModelOk(productRepository.findByName(name));
     }
+
+    @Override
+    public List<Product> getAll() {
+        return productEntityMapper.toModelList(productRepository.findAll());
+    }
+
+
 }
