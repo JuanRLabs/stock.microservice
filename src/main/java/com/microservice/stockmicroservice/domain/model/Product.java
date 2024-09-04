@@ -12,12 +12,12 @@ public class Product {
     private Long quantity;
     private BigDecimal price;
     private Brand brand;
-    private List<Long> categoriesId;
+    private List<Category> categoriesId;
 
     public Product() {
     }
 
-    public Product(Long id, String name, String description, Long quantity, BigDecimal price, Brand brand, List<Long> categoriesId) {
+    public Product(Long id, String name, String description, Long quantity, BigDecimal price, Brand brand, List<Category> categoriesId) {
             if (name == null || name.isEmpty()) {
                 throw new EmptyFieldException("The name cannot be null or empty");
             }
@@ -76,7 +76,7 @@ public class Product {
         return brand;
     }
 
-    public List<Long> getCategoriesId() {
+    public List<Category> getCategoriesId() {
         return categoriesId;
     }
 
@@ -104,7 +104,7 @@ public class Product {
         this.brand = brand;
     }
 
-    public void setCategories(List<Long> categoriesId) {
+    public void setCategories(List<Category> categoriesId) {
         this.categoriesId = categoriesId;
     }
 }

@@ -15,7 +15,6 @@ public class ProductAdapter implements IProductPersistencePort {
     private final IProductEntityMapper productEntityMapper;
     private final IBrandRepository brandRepository;
 
-
     @Override
     public void create(Product product) {
         productRepository.save(productEntityMapper.toEntity(product));
@@ -28,6 +27,6 @@ public class ProductAdapter implements IProductPersistencePort {
 
     @Override
     public Product findByName(String name) {
-        return productEntityMapper.toModelCreated(productRepository.findByName(name));
+        return productEntityMapper.toModelOk(productRepository.findByName(name));
     }
 }

@@ -3,6 +3,7 @@ package com.microservice.stockmicroservice.domain.api.usecase;
 import com.microservice.stockmicroservice.domain.api.IProductServicePort;
 import com.microservice.stockmicroservice.domain.exceptions.IllegalArgumentException;
 import com.microservice.stockmicroservice.domain.model.Brand;
+import com.microservice.stockmicroservice.domain.model.Category;
 import com.microservice.stockmicroservice.domain.model.Product;
 import com.microservice.stockmicroservice.domain.spi.ICategoryProductPersistencePort;
 import com.microservice.stockmicroservice.domain.spi.brand.IBrandPersistencePort;
@@ -28,7 +29,7 @@ public class ProductUseCase implements IProductServicePort {
         Long brandId = product.getBrand().getId();
         if (productPersistencePort.existsBrand(brandId))
         {
-            List<Long> categoriesId = product.getCategoriesId();
+            List<Category> categoriesId = product.getCategoriesId();
             productPersistencePort.create(product);
             Product dataProduct = productPersistencePort.findByName(product.getName());
             categoryProductPersistencePort.createRelationsCategories(categoriesId, dataProduct.getId());
