@@ -2,6 +2,7 @@ package com.microservice.stockmicroservice.adapters.driven.jpa.mysql.adapter;
 
 import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.entity.CategoryProductEntity;
 import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.repository.ICategoryProductRepository;
+import com.microservice.stockmicroservice.domain.model.Category;
 import com.microservice.stockmicroservice.domain.spi.ICategoryProductPersistencePort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -15,9 +16,9 @@ public class CategoryProductAdapter implements ICategoryProductPersistencePort {
     private final ICategoryProductRepository categoryProductRepository;
 
     @Override
-    public void createRelationsCategories(List<Long> categoryIds, Long productId) {
+    public void createRelationsCategories(List<Category> categoryIds, Long productId) {
         List<CategoryProductEntity> relations = categoryIds.stream()
-                .map(categoryId -> new CategoryProductEntity(categoryId, productId))
+                .map(categoryId -> new CategoryProductEntity(categoryId.getId(), productId))
                 .collect(Collectors.toList());
                 categoryProductRepository.saveAll(relations);
     }

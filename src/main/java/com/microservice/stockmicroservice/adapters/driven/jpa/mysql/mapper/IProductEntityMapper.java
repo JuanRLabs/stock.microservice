@@ -15,14 +15,12 @@ public interface IProductEntityMapper {
     @Mapping(target = "brandId", source = "brand")
     ProductEntity toEntity(Product product);
 
-    default List<Long> getDefaultCategoriesId() {
-        return List.of(1L);
-    }
-    @Mapping(target = "categoriesId", expression = "java( getDefaultCategoriesId() )")
-    Product toModelCreated(ProductEntity productEntity);
+//    default List<Long> getDefaultCategoriesId() {
+//        return List.of(1L);
+//    }
+//    @Mapping(target = "categoriesId", expression = "java( getDefaultCategoriesId() )")
+//    Product toModelCreated(ProductEntity productEntity);
 
-//    @Mapping(source = "brandId", target = "brand")
-//    Product toModelOk(ProductEntity productEntity);
-
+    Product toModelOk(ProductEntity productEntity);
 
 }
