@@ -104,7 +104,7 @@ public class Product {
         this.brand = brand;
     }
 
-    public void setCategories(List<Category> categoriesId) {
+    public void setCategoriesId(List<Category> categoriesId) {
         this.categoriesId = categoriesId;
     }
 }

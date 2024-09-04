@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "product")
@@ -29,6 +30,14 @@ public class ProductEntity {
     @ManyToOne
     @JoinColumn(name = "brand_id")
     private BrandEntity brandId;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "category_product",
+            joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "category_id", referencedColumnName = "id")
+                )
+    private List<CategoryEntity> categoriesId;
 
 
     public Long getId() {
@@ -54,6 +63,9 @@ public class ProductEntity {
     public BrandEntity getBrandId() {
         return brandId;
     }
+    public List<CategoryEntity> getCategoriesId() {
+        return categoriesId;
+    }
 
     public void setId(Long id) {
         this.id = id;
@@ -77,5 +89,9 @@ public class ProductEntity {
 
     public void setBrandId(BrandEntity brandId) {
         this.brandId = brandId;
+    }
+
+    public void setCategoriesId(List<CategoryEntity> categoriesId) {
+        this.categoriesId = categoriesId;
     }
 }
