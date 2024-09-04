@@ -28,10 +28,11 @@ public class BrandUseCase implements IBrandServicePort {
                 || !InputValidate.isValidLength(brand.getDescription(), 120)) {
             throw new IllegalArgumentDescriptionException();
         }
-        if(!brandPersistencePort.existsByName(brand.getName().trim()))
-        {
+        if(!brandPersistencePort.existsByName(brand.getName().trim())){
             brandPersistencePort.create(brand);
-        } throw new BrandAlreadyExistsException();
+        }else{
+            throw new BrandAlreadyExistsException();
+        }
     }
 
     @Override
