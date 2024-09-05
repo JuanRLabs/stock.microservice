@@ -8,7 +8,7 @@ import org.mapstruct.ReportingPolicy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-@Mapper(componentModel = "spring",  unmappedTargetPolicy = ReportingPolicy.IGNORE)
+@Mapper(componentModel = "spring")
 public interface IProductResponseMapper {
 
     Paginated<ProductResponse> toProductResponsePage(Paginated<Product> product);

@@ -37,12 +37,8 @@ public class ProductRestControllerAdapter {
 
     @GetMapping("/all-products")
     public ResponseEntity<Paginated<ProductResponse>> getAllProducts(int page, int size, String sort, Sorted sorted) {
-        PageableRequest pageableRequest = new PageableRequest.Builder()
-                .setPage(page)
-                .setSize(size)
-                .setSort(sort)
-                .setSorted(sorted)
-                .build();
-        return ResponseEntity.ok(productoResponseMapper.toProductResponsePage(productServicePort.listAllProducts(pageableRequest)));
+        return ResponseEntity.ok(
+                productoResponseMapper.toProductResponsePage(
+                productServicePort.listAllProducts(page, size, sort, sorted)));
     }
 }

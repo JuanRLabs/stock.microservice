@@ -3,7 +3,6 @@ package com.microservice.stockmicroservice.adapters.driven.jpa.mysql.mapper;
 import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.entity.ProductEntity;
 import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.exception.DataNotFoundToMapper;
 import com.microservice.stockmicroservice.configuration.Constants;
-import com.microservice.stockmicroservice.domain.exceptions.ProductsNotFoundToMapper;
 import com.microservice.stockmicroservice.domain.model.Product;
 import org.mapstruct.*;
 import org.springframework.data.domain.Page;
