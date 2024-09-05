@@ -1,10 +1,9 @@
 package com.microservice.stockmicroservice.adapters.driven.jpa.mysql.mapper;
 
-import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.entity.CategoryEntity;
 import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.entity.ProductEntity;
-import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.exception.CategoryNotFoundToMapper;
+import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.exception.DataNotFoundToMapper;
 import com.microservice.stockmicroservice.configuration.Constants;
-import com.microservice.stockmicroservice.domain.model.Category;
+import com.microservice.stockmicroservice.domain.exceptions.ProductsNotFoundToMapper;
 import com.microservice.stockmicroservice.domain.model.Product;
 import org.mapstruct.*;
 import org.springframework.data.domain.Page;
@@ -50,6 +49,7 @@ public interface IProductEntityMapper {
     }
 
     @Mapping(source = "brandId",target = "brand")
+    @Mapping(source = "categoriesId", target = "categoriesId")
     Product toModelOk(ProductEntity productEntity);
 
     default List<Product> toModelListPaginated(Page<ProductEntity> productEntities){
@@ -59,7 +59,7 @@ public interface IProductEntityMapper {
                 Product converted = toModelOk(productEntity);
                 products.add(converted);
             }else {
-                throw new CategoryNotFoundToMapper(Constants.NO_DATA_FOUND_EXCEPTION_MESSAGE);
+                throw new DataNotFoundToMapper(Constants.NO_DATA_FOUND_EXCEPTION_MESSAGE);
             }
         }
         return products;
