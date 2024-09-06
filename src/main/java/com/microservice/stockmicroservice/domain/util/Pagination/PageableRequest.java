@@ -30,7 +30,7 @@ public class PageableRequest {
 
         public Builder setPage(int page) {
             if (page <= 0) {
-                throw new IllegalArgumentException(DomainConstants.FIELD_PAGE_ILLEGAL_ARGUMENT_MESSAGE);
+                throw new IllegalArgumentException(DomainConstants.FIELD_PAGE_OR_SIZE_ILLEGAL_ARGUMENT_MESSAGE);
             }
             this.page = page;
             return this;
@@ -38,7 +38,7 @@ public class PageableRequest {
 
         public Builder setSize(int size) {
             if (size < 0) {
-                throw new IllegalArgumentException(DomainConstants.FIELD_SIZE_ILLEGAL_ARGUMENT_MESSAGE);
+                throw new IllegalArgumentException(DomainConstants.FIELD_PAGE_OR_SIZE_ILLEGAL_ARGUMENT_MESSAGE);
             }
             this.size = size;
             return this;
