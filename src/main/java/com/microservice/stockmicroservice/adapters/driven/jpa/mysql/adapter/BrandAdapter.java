@@ -1,8 +1,10 @@
 package com.microservice.stockmicroservice.adapters.driven.jpa.mysql.adapter;
 
 import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.entity.BrandEntity;
+import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.exception.DataNotFoundToMapper;
 import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.mapper.IBrandEntityMapper;
 import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.repository.IBrandRepository;
+import com.microservice.stockmicroservice.configuration.Constants;
 import com.microservice.stockmicroservice.domain.model.Brand;
 import com.microservice.stockmicroservice.domain.spi.brand.IBrandPersistencePort;
 import com.microservice.stockmicroservice.domain.util.Pagination.PageableRequest;
@@ -40,7 +42,7 @@ public class BrandAdapter implements IBrandPersistencePort {
 
     @Override
     public Brand getById(Long id) {
-        return brandEntityMapper.toModel(brandRepository.findById(id)) ;
+        return brandEntityMapper.toModel(brandRepository.findById(id).orElse(null) );
     }
 
     @Override

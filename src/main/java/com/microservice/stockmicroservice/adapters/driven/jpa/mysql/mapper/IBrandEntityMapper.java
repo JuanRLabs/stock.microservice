@@ -13,10 +13,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
+@Mapper(componentModel = "spring")
 public interface IBrandEntityMapper {
 
-    Brand toModel(Optional<BrandEntity> brandEntity);
+    //Brand toModel(Optional<BrandEntity> brandEntity);
+
+    @Mapping(target = "id", source = "id")
+    @Mapping(target = "name", source = "name")
+    @Mapping(target = "description", source = "description")
+    Brand toModel(BrandEntity brandEntity) ;
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "name", source = "name")
@@ -28,7 +33,7 @@ public interface IBrandEntityMapper {
         List<Brand> brands = new ArrayList<>();
         for (BrandEntity brandEntity : brandEntities) {
             if (brandEntity != null) {
-                Brand converted = toModel(Optional.of(brandEntity));
+                Brand converted = toModel(brandEntity);
                 brands.add(converted);
             }else {
                 throw new DataNotFoundToMapper(Constants.NO_DATA_FOUND_EXCEPTION_MESSAGE);

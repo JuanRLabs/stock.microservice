@@ -12,6 +12,6 @@ public interface IBrandRepository extends JpaRepository<BrandEntity, Long> {
     Page<BrandEntity> findAll(Pageable pageable);
 
     @Override
-    Optional<BrandEntity> findById(Long Long);
+    Optional<BrandEntity> findById(Long id);
 
 }
