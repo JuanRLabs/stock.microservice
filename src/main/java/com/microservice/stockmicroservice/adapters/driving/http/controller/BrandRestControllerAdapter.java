@@ -29,14 +29,8 @@ public class BrandRestControllerAdapter {
 
     @GetMapping("/")
     public ResponseEntity<Paginated<BrandResponse>> listAllBrandsPaginated(int page, int size, String sort, Sorted sorted){
-        PageableRequest pageableRequest = new PageableRequest.Builder()
-                .setPage(page)
-                .setSize(size)
-                .setSort(sort)
-                .setSorted(sorted)
-                .build();
         return ResponseEntity.ok(
-                brandResponseMapper.toResponsesPaginated(brandServicePort.listAllBrands(pageableRequest)));
+                brandResponseMapper.toResponsesPaginated(brandServicePort.listAllBrands(page, size, sort, sorted)));
     }
 
 }

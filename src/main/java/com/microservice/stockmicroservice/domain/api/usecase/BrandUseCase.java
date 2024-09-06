@@ -9,6 +9,7 @@ import com.microservice.stockmicroservice.domain.spi.brand.IBrandPersistencePort
 import com.microservice.stockmicroservice.domain.util.Pagination.PageableRequest;
 import com.microservice.stockmicroservice.domain.util.Pagination.Paginated;
 import com.microservice.stockmicroservice.domain.util.InputValidate;
+import com.microservice.stockmicroservice.domain.util.Pagination.Sorted;
 
 public class BrandUseCase implements IBrandServicePort {
     private final IBrandPersistencePort brandPersistencePort;
@@ -36,7 +37,13 @@ public class BrandUseCase implements IBrandServicePort {
     }
 
     @Override
-    public Paginated<Brand> listAllBrands(PageableRequest pageableRequest) {
+    public Paginated<Brand> listAllBrands(int page, int size, String sort, Sorted sorted) {
+        PageableRequest pageableRequest = new PageableRequest.Builder()
+                .setPage(page)
+                .setSize(size)
+                .setSort(sort)
+                .setSorted(sorted)
+                .build();
         return brandPersistencePort.listAllBrands(pageableRequest);
     }
 
