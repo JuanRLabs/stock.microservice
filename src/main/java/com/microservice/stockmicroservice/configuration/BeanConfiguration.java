@@ -2,7 +2,6 @@ package com.microservice.stockmicroservice.configuration;
 
 import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.adapter.BrandAdapter;
 import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.adapter.CategoryAdapter;
-import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.adapter.CategoryProductAdapter;
 import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.adapter.ProductAdapter;
 import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.mapper.IBrandEntityMapper;
 import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.mapper.ICategoryEntityMapper;
@@ -17,7 +16,6 @@ import com.microservice.stockmicroservice.domain.api.IProductServicePort;
 import com.microservice.stockmicroservice.domain.api.usecase.BrandUseCase;
 import com.microservice.stockmicroservice.domain.api.usecase.CategoryUseCase;
 import com.microservice.stockmicroservice.domain.api.usecase.ProductUseCase;
-import com.microservice.stockmicroservice.domain.spi.ICategoryProductPersistencePort;
 import com.microservice.stockmicroservice.domain.spi.brand.IBrandPersistencePort;
 import com.microservice.stockmicroservice.domain.spi.category.ICategoryPersistencePort;
 import com.microservice.stockmicroservice.domain.spi.product.IProductPersistencePort;
@@ -66,12 +64,6 @@ public class BeanConfiguration {
     @Bean
     public IProductServicePort productServicePort(){
         return new ProductUseCase(productPersistencePort(), brandPersistencePort());
-    }
-
-    // CategoryPerProduct beans
-    @Bean
-    public ICategoryProductPersistencePort categoryProductPersistencePort(){
-        return new CategoryProductAdapter(categoryProductRepository);
     }
 
 }
