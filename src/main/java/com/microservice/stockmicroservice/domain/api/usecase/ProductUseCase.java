@@ -1,12 +1,16 @@
 package com.microservice.stockmicroservice.domain.api.usecase;
 
 import com.microservice.stockmicroservice.domain.api.IProductServicePort;
+import com.microservice.stockmicroservice.domain.exceptions.EmptyFieldException;
 import com.microservice.stockmicroservice.domain.exceptions.IllegalArgumentException;
+import com.microservice.stockmicroservice.domain.model.Category;
 import com.microservice.stockmicroservice.domain.model.Product;
 import com.microservice.stockmicroservice.domain.spi.brand.IBrandPersistencePort;
 import com.microservice.stockmicroservice.domain.spi.product.IProductPersistencePort;
+import com.microservice.stockmicroservice.domain.util.DomainConstants;
 import com.microservice.stockmicroservice.domain.util.Pagination.PageableRequest;
 import com.microservice.stockmicroservice.domain.util.Pagination.Paginated;
+import com.microservice.stockmicroservice.domain.util.Pagination.Sorted;
 
 import java.util.List;
 
@@ -24,9 +28,12 @@ public class ProductUseCase implements IProductServicePort {
         Long brandId = product.getBrand().getId();
         if (brandPersistencePort.existsBrand(brandId))
         {
+            if (product.getCategoriesId().stream().map(Category::getId).distinct().count() != product.getCategoriesId().size() ) {
+                throw new EmptyFieldException(DomainConstants.FIELD_CATEGORIESID_CONTAIN_ILLEGAL_ARGUMENT_MESSAGE);
+            }
             productPersistencePort.create(product);
         }else
-        { throw new IllegalArgumentException("Marca no encontrada");}
+        { throw new IllegalArgumentException("BrandId not found");}
     }
 
     @Override
@@ -36,7 +43,27 @@ public class ProductUseCase implements IProductServicePort {
 
 
     @Override
-    public Paginated<Product> listAllProducts(PageableRequest pageableRequest) {
+    public Paginated<Product> listAllProducts(int page, int size, String sort, Sorted sorted) {
+        String sortType = sort;
+        switch (sortType){
+            case "name" : {
+                    break;
+            }
+            case "brandName" :{
+                sort = "brandId.name";
+                break;
+            }
+            case "categoryName": {
+                sort = "categoriesId.name";
+            }
+        }
+        PageableRequest pageableRequest = new PageableRequest.Builder()
+                .setPage(page)
+                .setSize(size)
+                .setSort(sort)
+                .setSorted(sorted)
+                .build();
+
         return productPersistencePort.listAllProducts(pageableRequest);
     }
 }
