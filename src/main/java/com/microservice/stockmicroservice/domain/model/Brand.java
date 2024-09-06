@@ -1,5 +1,8 @@
 package com.microservice.stockmicroservice.domain.model;
 
+import com.microservice.stockmicroservice.domain.exceptions.EmptyFieldException;
+import com.microservice.stockmicroservice.domain.util.DomainConstants;
+
 public class Brand {
     private Long id;
     private String name;
@@ -35,10 +38,16 @@ public class Brand {
     }
 
     public void setName(String name) {
+        if (name == null || name.isEmpty()) {
+            throw new EmptyFieldException(DomainConstants.FIELD_NAME_ILLEGAL_ARGUMENT_MESSAGE);
+        }
         this.name = name.trim();
     }
 
     public void setDescription(String description) {
+        if (description == null || description.isEmpty()) {
+            throw new EmptyFieldException(DomainConstants.FIELD_DESCRIPTION_ILLEGAL_ARGUMENT_MESSAGE);
+        }
         this.description = description.trim();
     }
 }
