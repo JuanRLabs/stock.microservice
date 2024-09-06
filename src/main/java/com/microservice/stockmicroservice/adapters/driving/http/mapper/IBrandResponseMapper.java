@@ -26,7 +26,8 @@ public interface IBrandResponseMapper {
         Paginated<BrandResponse> paginatedResponse = new Paginated<>();
         paginatedResponse.setContent(response);
         paginatedResponse.setTotalElements(brands.getTotalElements());
-        paginatedResponse.setTotalPages(brands.getTotalPages());
+       paginatedResponse.setTotalPages(brands.getTotalPages());
+        paginatedResponse.setPageableRequest(brands.getPageableRequest());
         return paginatedResponse;
     }
 }

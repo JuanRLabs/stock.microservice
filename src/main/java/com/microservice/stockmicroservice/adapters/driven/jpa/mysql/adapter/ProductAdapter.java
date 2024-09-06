@@ -47,7 +47,7 @@ public class ProductAdapter implements IProductPersistencePort {
         Pageable pageable = PageRequest.of(pageableRequest.getPage(), pageableRequest.getSize(), sort);
         Page<ProductEntity> responseRepository = productRepository.findAll(pageable);
         List<Product> products = productEntityMapper.toModelListPaginated(responseRepository);
-        return  new Paginated<>(products, responseRepository.getTotalPages(), responseRepository.getTotalElements());
+        return  new Paginated<>(products, pageableRequest, responseRepository.getTotalPages() ,responseRepository.getTotalElements());
     }
 
 

@@ -49,6 +49,6 @@ public class BrandAdapter implements IBrandPersistencePort {
         Pageable pageable = PageRequest.of(pageableRequest.getPage(), pageableRequest.getSize(), sort);
         Page<BrandEntity> responseRepository = brandRepository.findAll(pageable);
         List<Brand> brands = brandEntityMapper.toModelList(responseRepository);
-        return new Paginated<Brand>(brands, responseRepository.getTotalPages(), responseRepository.getTotalElements());
+        return new Paginated<Brand>(brands, pageableRequest, responseRepository.getTotalPages(), responseRepository.getTotalElements());
     }
 }
