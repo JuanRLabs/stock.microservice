@@ -6,17 +6,13 @@ import com.microservice.stockmicroservice.configuration.Constants;
 import com.microservice.stockmicroservice.domain.model.Brand;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.ReportingPolicy;
 import org.springframework.data.domain.Page;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Mapper(componentModel = "spring")
 public interface IBrandEntityMapper {
-
-    //Brand toModel(Optional<BrandEntity> brandEntity);
 
     @Mapping(target = "id", source = "id")
     @Mapping(target = "name", source = "name")

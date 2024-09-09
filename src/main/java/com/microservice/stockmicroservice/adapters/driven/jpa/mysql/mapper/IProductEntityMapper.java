@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)// Brand beans
+@Mapper(componentModel = "spring")
 public interface IProductEntityMapper {
 
     @Mapping(target = "id", ignore = true)
@@ -42,7 +42,7 @@ public interface IProductEntityMapper {
     default void afterMapping(ProductEntity productEntity, @MappingTarget Product product) {
         if (productEntity.getCategoriesId() != null) {
             product.setCategoriesId(productEntity.getCategoriesId().stream()
-                    .map(categoryEntity -> ICategoryEntityMapper.INSTANCE.toModel(categoryEntity))
+                    .map(ICategoryEntityMapper.INSTANCE::toModel)
                     .collect(Collectors.toList()));
         }
     }

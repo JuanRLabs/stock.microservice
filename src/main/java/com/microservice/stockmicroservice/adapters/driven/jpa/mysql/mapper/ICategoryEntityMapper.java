@@ -6,14 +6,13 @@ import com.microservice.stockmicroservice.configuration.Constants;
 import com.microservice.stockmicroservice.domain.model.Category;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
-import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
 import org.springframework.data.domain.Page;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)// Brand beans
+@Mapper(componentModel = "spring")
 public interface ICategoryEntityMapper {
 
   ICategoryEntityMapper INSTANCE = Mappers.getMapper(ICategoryEntityMapper.class);
