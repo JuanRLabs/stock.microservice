@@ -24,7 +24,7 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class CategoryUseCaseTest {
 
-    @Mock(lenient = true)
+    @Mock
     private ICategoryPersistencePort categoryPersistencePort;
 
     @InjectMocks

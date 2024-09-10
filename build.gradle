@@ -52,6 +52,8 @@ dependencies {
 tasks.named('test') {
 	useJUnitPlatform()
 	dependsOn 'cleanTest'
+	include '**/com/microservice/stockmicroservice/domain/api/usecase/*'
+	exclude '/com.microservice.stockmicroservice.adapters/**', '/com/microservice/stockmicroservice/configuration/**'
 	testLogging {
 		events "passed", "skipped", "failed"
 	}
