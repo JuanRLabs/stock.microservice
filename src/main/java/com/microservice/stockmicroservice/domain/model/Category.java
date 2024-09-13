@@ -10,10 +10,10 @@ public class Category {
 
     public Category(Long id, String name, String description) {
         if (name.trim().isEmpty()) {
-            throw new EmptyFieldException(DomainConstants.Field.NAME.toString());
+            throw new EmptyFieldException(DomainConstants.FIELD_NAME_IS_EMPTY_MESSAGE);
         }
         if (description.trim().isEmpty()) {
-            throw new EmptyFieldException(DomainConstants.Field.DESCRIPTION.toString());
+            throw new EmptyFieldException(DomainConstants.FIELD_DESCRIPTION_IS_EMPTY_MESSAGE);
         }
         this.id = id;
         this.name = name;

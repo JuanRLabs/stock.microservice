@@ -19,7 +19,9 @@ public interface ICategoryEntityMapper {
   @Mapping(target = "name", source = "name")
   @Mapping(target = "description", source = "description")
   Category toModel(CategoryEntity categoryEntity);
+
   CategoryEntity toEntity(Category category);
+
   default List<Category> toModelList(Page<CategoryEntity> categoryEntities){
     List<Category> categories = new ArrayList<>();
     for (CategoryEntity categoryEntity : categoryEntities) {

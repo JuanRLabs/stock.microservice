@@ -26,6 +26,7 @@ public interface ICategoryResponseMapper {
         paginatedResponse.setContent(categoryResponses);
         paginatedResponse.setTotalElements(categories.getTotalElements());
         paginatedResponse.setTotalPages(categories.getTotalPages());
+        paginatedResponse.setPageableRequest(categories.getPageableRequest());
         return paginatedResponse;
     }
 }

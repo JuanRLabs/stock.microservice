@@ -7,12 +7,14 @@ import java.util.function.Function;
 
 public class Paginated<T> {
     List<T> content;
-    int totalPages;
+    PageableRequest pageableRequest;
+    long totalPages ;
     long totalElements;
 
-    public Paginated(List<T> content, int totalPages, long totalElements) {
+    public Paginated(List<T> content, PageableRequest pageableRequest, long totalPages, long totalElements) {
         this.content = content;
-        this.totalPages = totalPages;
+        this.pageableRequest = pageableRequest;
+        this.totalPages = totalPages ;
         this.totalElements = totalElements;
     }
 
@@ -27,11 +29,19 @@ public class Paginated<T> {
         this.content = content;
     }
 
-    public int getTotalPages() {
+    public PageableRequest getPageableRequest() {
+        return pageableRequest;
+    }
+
+    public void setPageableRequest(PageableRequest pageableRequest) {
+        this.pageableRequest = pageableRequest;
+    }
+
+    public long getTotalPages() {
         return totalPages;
     }
 
-    public void setTotalPages(int totalPages) {
+    public void setTotalPages(long totalPages) {
         this.totalPages = totalPages;
     }
 
@@ -48,7 +58,7 @@ public class Paginated<T> {
         for (T element : content) {
             mappedContent.add(mapper.apply(element));
         }
-        return new Paginated<>(mappedContent, totalPages, totalElements);
+        return new Paginated<>(mappedContent, pageableRequest, totalPages, totalElements);
     }
 
     @Override
@@ -56,11 +66,11 @@ public class Paginated<T> {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Paginated<?> that = (Paginated<?>) o;
-        return totalPages == that.totalPages && totalElements == that.totalElements && Objects.equals(content, that.content);
+        return pageableRequest == that.pageableRequest && totalElements == that.totalElements && Objects.equals(content, that.content);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(content, totalPages, totalElements);
+        return Objects.hash(content, pageableRequest, totalElements);
     }
 }
