@@ -64,6 +64,7 @@ public class PageableRequest {
             return new PageableRequest(page, size, sort, sorted);
         }
     }
+    
     public int getPage() {return page;}
 
     public void setPage(int page) {this.page = page;}
