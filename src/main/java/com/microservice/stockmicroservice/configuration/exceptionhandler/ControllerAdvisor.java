@@ -3,6 +3,7 @@ package com.microservice.stockmicroservice.configuration.exceptionhandler;
 import com.microservice.stockmicroservice.domain.exceptions.*;
 import com.microservice.stockmicroservice.configuration.Constants;
 import com.microservice.stockmicroservice.domain.exceptions.IllegalArgumentException;
+import com.microservice.stockmicroservice.domain.exceptions.NullPointerException;
 import com.microservice.stockmicroservice.domain.util.DomainConstants;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -45,4 +46,9 @@ public class ControllerAdvisor {
                 HttpStatus.BAD_REQUEST.toString(), LocalDateTime.now()));
     }
 
+    @ExceptionHandler({NullPointerException.class})
+    public ResponseEntity<ExceptionResponse> handlerNullPointerException(){
+        return ResponseEntity.badRequest().body(new ExceptionResponse(DomainConstants.CONTENT_PAGE_IS_NULL,
+                HttpStatus.BAD_REQUEST.toString(), LocalDateTime.now()));
+    }
 }

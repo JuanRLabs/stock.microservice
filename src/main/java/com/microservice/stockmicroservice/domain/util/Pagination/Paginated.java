@@ -1,5 +1,7 @@
 package com.microservice.stockmicroservice.domain.util.Pagination;
 
+import com.microservice.stockmicroservice.domain.exceptions.NullPointerException;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -12,9 +14,12 @@ public class Paginated<T> {
     long totalElements;
 
     public Paginated(List<T> content, PageableRequest pageableRequest, long totalPages, long totalElements) {
+        if (content.isEmpty()) {
+            throw new NullPointerException();
+        }
         this.content = content;
         this.pageableRequest = pageableRequest;
-        this.totalPages = totalPages ;
+        this.totalPages = totalPages;
         this.totalElements = totalElements;
     }
 

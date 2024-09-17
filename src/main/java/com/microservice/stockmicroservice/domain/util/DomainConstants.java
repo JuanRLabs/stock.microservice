@@ -17,5 +17,6 @@ public final class DomainConstants {
     public static final String FIELD_PAGE_OR_SIZE_ILLEGAL_ARGUMENT_MESSAGE = "Field 'page' or 'size' cannot be negative value";
     public static final String FIELD_SIZE_ILLEGAL_ARGUMENT_MESSAGE = "Field 'size' cannot be negative value";
     public static final String FIELD_PAGE_ILLEGAL_ARGUMENT_MESSAGE = "Field 'page' cannot be negative value";
+    public static final String CONTENT_PAGE_IS_NULL = "Content 'page' is null";
 
 }
