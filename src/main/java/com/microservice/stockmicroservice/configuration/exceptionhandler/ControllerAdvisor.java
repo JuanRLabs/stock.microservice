@@ -1,12 +1,8 @@
 package com.microservice.stockmicroservice.configuration.exceptionhandler;
 
-import com.microservice.stockmicroservice.domain.exceptions.BrandAlreadyExistsException;
-import com.microservice.stockmicroservice.domain.exceptions.CategoryAlreadyExistsException;
+import com.microservice.stockmicroservice.domain.exceptions.*;
 import com.microservice.stockmicroservice.configuration.Constants;
-import com.microservice.stockmicroservice.domain.exceptions.EmptyFieldException;
-import com.microservice.stockmicroservice.domain.exceptions.IllegalArgumentDescriptionException;
 import com.microservice.stockmicroservice.domain.exceptions.IllegalArgumentException;
-import com.microservice.stockmicroservice.domain.exceptions.IllegalArgumentNameException;
 import com.microservice.stockmicroservice.domain.util.DomainConstants;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +23,12 @@ public class ControllerAdvisor {
     @ExceptionHandler(CategoryAlreadyExistsException.class)
     public ResponseEntity<ExceptionResponse> handleCategoryAlreadyExistsException(){
         return ResponseEntity.badRequest().body(new ExceptionResponse(Constants.CATEGORY_ALREADY_EXISTS_EXCEPTION_MESSAGE,
+                HttpStatus.BAD_REQUEST.toString(), LocalDateTime.now()));
+    }
+
+    @ExceptionHandler(ProductAlreadyExistsException.class)
+    public ResponseEntity<ExceptionResponse> handleProductAlreadyExistsException(){
+        return ResponseEntity.badRequest().body(new ExceptionResponse(Constants.PRODUCT_ALREADY_EXISTS_EXCEPTION_MESSAGE,
                 HttpStatus.BAD_REQUEST.toString(), LocalDateTime.now()));
     }
 

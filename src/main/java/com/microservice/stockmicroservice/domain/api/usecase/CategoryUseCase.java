@@ -1,6 +1,7 @@
 package com.microservice.stockmicroservice.domain.api.usecase;
 
 import com.microservice.stockmicroservice.domain.exceptions.CategoryAlreadyExistsException;
+import com.microservice.stockmicroservice.domain.exceptions.IllegalArgumentDescriptionException;
 import com.microservice.stockmicroservice.domain.exceptions.IllegalArgumentNameException;
 import com.microservice.stockmicroservice.domain.spi.category.ICategoryPersistencePort;
 import com.microservice.stockmicroservice.domain.api.ICategoryServicePort;
@@ -26,9 +27,10 @@ public class CategoryUseCase implements ICategoryServicePort {
         {
             throw new IllegalArgumentNameException();
         }
-        if (InputValidate.isEmpty(category.getDescription()))
+        if (InputValidate.isEmpty(category.getDescription())
+                || !InputValidate.isValidLength(category.getDescription(), 90))
         {
-            throw new IllegalArgumentNameException();
+            throw new IllegalArgumentDescriptionException();
         }
         if (!categoryPersistencePort.existsByName(category.getName().trim()))
         {
