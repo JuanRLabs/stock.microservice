@@ -18,6 +18,6 @@ public class ProductResponse {
     private BigDecimal price;
     private BrandResponse brand;
     //ignorar el description de categoryResponse
-    private List<CategoryResponse> categoriesId;
+    private List<CategoryPerProduct> categoriesId;
 
 }

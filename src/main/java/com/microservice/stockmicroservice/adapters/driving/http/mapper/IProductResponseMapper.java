@@ -4,6 +4,7 @@ import com.microservice.stockmicroservice.adapters.driving.http.dto.response.Pro
 import com.microservice.stockmicroservice.domain.model.Product;
 import com.microservice.stockmicroservice.domain.util.Pagination.Paginated;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
