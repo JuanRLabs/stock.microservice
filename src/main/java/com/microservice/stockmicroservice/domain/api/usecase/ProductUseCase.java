@@ -3,6 +3,7 @@ package com.microservice.stockmicroservice.domain.api.usecase;
 import com.microservice.stockmicroservice.domain.api.IProductServicePort;
 import com.microservice.stockmicroservice.domain.exceptions.EmptyFieldException;
 import com.microservice.stockmicroservice.domain.exceptions.IllegalArgumentException;
+import com.microservice.stockmicroservice.domain.exceptions.ProductAlreadyExistsException;
 import com.microservice.stockmicroservice.domain.model.Category;
 import com.microservice.stockmicroservice.domain.model.Product;
 import com.microservice.stockmicroservice.domain.spi.brand.IBrandPersistencePort;
@@ -13,6 +14,7 @@ import com.microservice.stockmicroservice.domain.util.Pagination.Paginated;
 import com.microservice.stockmicroservice.domain.util.Pagination.Sorted;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ProductUseCase implements IProductServicePort {
     private final IProductPersistencePort productPersistencePort;
@@ -26,14 +28,18 @@ public class ProductUseCase implements IProductServicePort {
     @Override
     public void create(Product product) {
         Long brandId = product.getBrand().getId();
-        if (brandPersistencePort.existsBrand(brandId))
-        {
-            if (product.getCategoriesId().stream().map(Category::getId).distinct().count() != product.getCategoriesId().size() ) {
+        if (brandPersistencePort.existsBrand(brandId)){
+
+            if(Objects.isNull(productPersistencePort.findByName(product.getName().trim()))){
+
+              if (product.getCategoriesId().stream().map(Category::getId).distinct().count() != product.getCategoriesId().size() ) {
                 throw new EmptyFieldException(DomainConstants.FIELD_CATEGORIESID_CONTAIN_ILLEGAL_ARGUMENT_MESSAGE);
+                }
+                productPersistencePort.create(product);
             }
-            productPersistencePort.create(product);
-        }else
-        { throw new IllegalArgumentException("BrandId not found");}
+            throw new ProductAlreadyExistsException();
+            }
+            throw new IllegalArgumentException("BrandId not found");
     }
 
     @Override
