@@ -56,4 +56,10 @@ public class ControllerAdvisor {
                 HttpStatus.BAD_REQUEST.toString(), LocalDateTime.now()));
     }
 
+    @ExceptionHandler({IllegalBrandException.class})
+    public ResponseEntity<ExceptionResponse> handlerIllegalBrandException(){
+        return ResponseEntity.badRequest().body(new ExceptionResponse(Constants.NO_BRAND_FOUND_EXCEPTION_MESSAGE,
+                HttpStatus.BAD_REQUEST.toString(), LocalDateTime.now()));
+    }
+
 }

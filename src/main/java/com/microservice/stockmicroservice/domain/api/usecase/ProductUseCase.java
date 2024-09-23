@@ -3,6 +3,7 @@ package com.microservice.stockmicroservice.domain.api.usecase;
 import com.microservice.stockmicroservice.domain.api.IProductServicePort;
 import com.microservice.stockmicroservice.domain.exceptions.EmptyFieldException;
 import com.microservice.stockmicroservice.domain.exceptions.IllegalArgumentException;
+import com.microservice.stockmicroservice.domain.exceptions.IllegalBrandException;
 import com.microservice.stockmicroservice.domain.exceptions.ProductAlreadyExistsException;
 import com.microservice.stockmicroservice.domain.model.Category;
 import com.microservice.stockmicroservice.domain.model.Product;
@@ -39,7 +40,7 @@ public class ProductUseCase implements IProductServicePort {
             }
             throw new ProductAlreadyExistsException();
             }
-            throw new IllegalArgumentException("BrandId not found");
+            throw new IllegalBrandException();
     }
 
     @Override
