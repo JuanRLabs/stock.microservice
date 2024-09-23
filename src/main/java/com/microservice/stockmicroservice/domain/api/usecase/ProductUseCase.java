@@ -2,7 +2,6 @@ package com.microservice.stockmicroservice.domain.api.usecase;
 
 import com.microservice.stockmicroservice.domain.api.IProductServicePort;
 import com.microservice.stockmicroservice.domain.exceptions.EmptyFieldException;
-import com.microservice.stockmicroservice.domain.exceptions.IllegalArgumentException;
 import com.microservice.stockmicroservice.domain.exceptions.IllegalBrandException;
 import com.microservice.stockmicroservice.domain.exceptions.ProductAlreadyExistsException;
 import com.microservice.stockmicroservice.domain.model.Category;
