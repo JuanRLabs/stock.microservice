@@ -3,6 +3,8 @@ package com.microservice.stockmicroservice.adapters.driven.jpa.mysql.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "category")
 @Data
@@ -15,6 +17,9 @@ public class CategoryEntity {
     private Long id;
     private String name;
     private String description;
+
+    @ManyToMany(mappedBy = "categoriesId")
+    private List<ProductEntity> products;
 
     public Long getId() {
         return id;

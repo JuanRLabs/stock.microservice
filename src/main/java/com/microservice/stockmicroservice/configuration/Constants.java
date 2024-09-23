@@ -5,5 +5,7 @@ public class Constants {
 
     public static final String CATEGORY_ALREADY_EXISTS_EXCEPTION_MESSAGE = "The category you want to create already exists";
     public static final String BRAND_ALREADY_EXISTS_EXCEPTION_MESSAGE = "The brand you want to create already exists";
+    public static final String PRODUCT_ALREADY_EXISTS_EXCEPTION_MESSAGE = "The product you want to create already exists";
     public static final String NO_DATA_FOUND_EXCEPTION_MESSAGE = "No data was found in the database";
+    public static final String NO_BRAND_FOUND_EXCEPTION_MESSAGE = "BrandId not found";
 }

@@ -5,7 +5,6 @@ import com.microservice.stockmicroservice.adapters.driving.http.dto.response.Bra
 import com.microservice.stockmicroservice.adapters.driving.http.mapper.IBrandRequestMapper;
 import com.microservice.stockmicroservice.adapters.driving.http.mapper.IBrandResponseMapper;
 import com.microservice.stockmicroservice.domain.api.IBrandServicePort;
-import com.microservice.stockmicroservice.domain.util.Pagination.PageableRequest;
 import com.microservice.stockmicroservice.domain.util.Pagination.Paginated;
 import com.microservice.stockmicroservice.domain.util.Pagination.Sorted;
 import lombok.RequiredArgsConstructor;
@@ -29,14 +28,8 @@ public class BrandRestControllerAdapter {
 
     @GetMapping("/")
     public ResponseEntity<Paginated<BrandResponse>> listAllBrandsPaginated(int page, int size, String sort, Sorted sorted){
-        PageableRequest pageableRequest = new PageableRequest.Builder()
-                .setPage(page)
-                .setSize(size)
-                .setSort(sort)
-                .setSorted(sorted)
-                .build();
         return ResponseEntity.ok(
-                brandResponseMapper.toResponsesPaginated(brandServicePort.listAllBrands(pageableRequest)));
+                brandResponseMapper.toResponsesPaginated(brandServicePort.listAllBrands(page, size, sort, sorted)));
     }
 
 }

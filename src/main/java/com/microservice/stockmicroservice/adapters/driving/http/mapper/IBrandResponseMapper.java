@@ -1,9 +1,7 @@
 package com.microservice.stockmicroservice.adapters.driving.http.mapper;
 
 import com.microservice.stockmicroservice.adapters.driving.http.dto.response.BrandResponse;
-import com.microservice.stockmicroservice.adapters.driving.http.dto.response.CategoryResponse;
 import com.microservice.stockmicroservice.domain.model.Brand;
-import com.microservice.stockmicroservice.domain.model.Category;
 import com.microservice.stockmicroservice.domain.util.Pagination.Paginated;
 import org.mapstruct.Mapper;
 import org.mapstruct.ReportingPolicy;
@@ -13,7 +11,9 @@ import java.util.List;
 
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface IBrandResponseMapper {
+
     BrandResponse toBrandResponse(Brand brand);
+
     default Paginated<BrandResponse> toResponsesPaginated(Paginated<Brand> brands)
    {
         List<BrandResponse> response = new ArrayList<>();
@@ -26,7 +26,8 @@ public interface IBrandResponseMapper {
         Paginated<BrandResponse> paginatedResponse = new Paginated<>();
         paginatedResponse.setContent(response);
         paginatedResponse.setTotalElements(brands.getTotalElements());
-        paginatedResponse.setTotalPages(brands.getTotalPages());
+       paginatedResponse.setTotalPages(brands.getTotalPages());
+        paginatedResponse.setPageableRequest(brands.getPageableRequest());
         return paginatedResponse;
     }
 }

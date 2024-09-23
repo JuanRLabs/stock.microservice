@@ -2,6 +2,9 @@ package com.microservice.stockmicroservice.domain.util;
 
 public class InputValidate {
 
+    private InputValidate() {
+    }
+
     public static boolean isAlphabetic(String str) {
         for (char c : str.toCharArray()) {
             if (!Character.isLetter(c) && !Character.isWhitespace(c)) {

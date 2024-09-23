@@ -8,6 +8,7 @@ public class Category {
     private String name;
     private String description;
 
+
     public Category(Long id, String name, String description) {
         if (name.trim().isEmpty()) {
             throw new EmptyFieldException(DomainConstants.Field.NAME.toString());

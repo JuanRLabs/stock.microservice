@@ -1,8 +1,7 @@
 package com.microservice.stockmicroservice.configuration.exceptionhandler;
 
-import com.microservice.stockmicroservice.domain.exceptions.BrandAlreadyExistsException;
-import com.microservice.stockmicroservice.configuration.Constants;
 import com.microservice.stockmicroservice.domain.exceptions.*;
+import com.microservice.stockmicroservice.configuration.Constants;
 import com.microservice.stockmicroservice.domain.exceptions.IllegalArgumentException;
 import com.microservice.stockmicroservice.domain.util.DomainConstants;
 import org.springframework.http.HttpStatus;
@@ -17,8 +16,7 @@ public class ControllerAdvisor {
 
     @ExceptionHandler(EmptyFieldException.class)
     public ResponseEntity<ExceptionResponse> handleEmptyFieldException(EmptyFieldException exception) {
-        return ResponseEntity.badRequest().body(new ExceptionResponse(
-                String.format( exception.getMessage()),
+        return ResponseEntity.badRequest().body(new ExceptionResponse(String.format(exception.getMessage()),
                 HttpStatus.BAD_REQUEST.toString(), LocalDateTime.now()));
     }
 
@@ -28,9 +26,15 @@ public class ControllerAdvisor {
                 HttpStatus.BAD_REQUEST.toString(), LocalDateTime.now()));
     }
 
+    @ExceptionHandler(ProductAlreadyExistsException.class)
+    public ResponseEntity<ExceptionResponse> handleProductAlreadyExistsException(){
+        return ResponseEntity.badRequest().body(new ExceptionResponse(Constants.PRODUCT_ALREADY_EXISTS_EXCEPTION_MESSAGE,
+                HttpStatus.BAD_REQUEST.toString(), LocalDateTime.now()));
+    }
+
     @ExceptionHandler({IllegalArgumentException.class})
-    public ResponseEntity<ExceptionResponse> handlerIllegalArgumentException(){
-        return ResponseEntity.badRequest().body(new ExceptionResponse(DomainConstants.FIELD_PAGE_OR_SIZE_ILLEGAL_ARGUMENT_MESSAGE,
+    public ResponseEntity<ExceptionResponse> handlerIllegalArgumentException(IllegalArgumentException exception){
+        return ResponseEntity.badRequest().body(new ExceptionResponse(String.format(exception.getMessage()),
                 HttpStatus.BAD_REQUEST.toString(), LocalDateTime.now()));
     }
 
@@ -49,6 +53,12 @@ public class ControllerAdvisor {
     @ExceptionHandler({IllegalArgumentDescriptionException.class})
     public ResponseEntity<ExceptionResponse> handlerIllegalArgumentDescriptionException(){
         return ResponseEntity.badRequest().body(new ExceptionResponse(DomainConstants.FIELD_DESCRIPTION_NULL_OR_ILLEGAL_MESSAGE,
+                HttpStatus.BAD_REQUEST.toString(), LocalDateTime.now()));
+    }
+
+    @ExceptionHandler({IllegalBrandException.class})
+    public ResponseEntity<ExceptionResponse> handlerIllegalBrandException(){
+        return ResponseEntity.badRequest().body(new ExceptionResponse(Constants.NO_BRAND_FOUND_EXCEPTION_MESSAGE,
                 HttpStatus.BAD_REQUEST.toString(), LocalDateTime.now()));
     }
 

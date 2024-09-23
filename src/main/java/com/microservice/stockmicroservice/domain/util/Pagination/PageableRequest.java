@@ -11,7 +11,7 @@ public class PageableRequest {
     private final int MAX_PER_PAGE = 50;
 
     public PageableRequest(int page, int size, String sort, Sorted sorted) {
-        if (page <= 0 || size < 0 ) throw new IllegalArgumentException(DomainConstants.FIELD_PAGE_OR_SIZE_ILLEGAL_ARGUMENT_MESSAGE);
+        if (page < 0 || size < 0 ) throw new IllegalArgumentException(DomainConstants.FIELD_PAGE_OR_SIZE_ILLEGAL_ARGUMENT_MESSAGE);
         if (sort.isEmpty()) sort = "id";
         if ("DESC".equalsIgnoreCase(sorted.name()) || sorted.name().isEmpty()) {
             sorted = Sorted.DESC;
@@ -23,14 +23,14 @@ public class PageableRequest {
     }
 
     public static class Builder {
-        private int page = 1;
+        private int page = 0;
         private int size = 10;
         private String sort = "id";
         private Sorted sorted = Sorted.DESC;
 
         public Builder setPage(int page) {
-            if (page <= 0) {
-                throw new IllegalArgumentException(DomainConstants.FIELD_PAGE_ILLEGAL_ARGUMENT_MESSAGE);
+            if (page < 0) {
+                throw new IllegalArgumentException(DomainConstants.FIELD_PAGE_OR_SIZE_ILLEGAL_ARGUMENT_MESSAGE);
             }
             this.page = page;
             return this;
@@ -38,7 +38,7 @@ public class PageableRequest {
 
         public Builder setSize(int size) {
             if (size < 0) {
-                throw new IllegalArgumentException(DomainConstants.FIELD_SIZE_ILLEGAL_ARGUMENT_MESSAGE);
+                throw new IllegalArgumentException(DomainConstants.FIELD_PAGE_OR_SIZE_ILLEGAL_ARGUMENT_MESSAGE);
             }
             this.size = size;
             return this;

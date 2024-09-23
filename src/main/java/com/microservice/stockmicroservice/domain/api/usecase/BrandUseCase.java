@@ -5,10 +5,11 @@ import com.microservice.stockmicroservice.domain.exceptions.BrandAlreadyExistsEx
 import com.microservice.stockmicroservice.domain.exceptions.IllegalArgumentDescriptionException;
 import com.microservice.stockmicroservice.domain.exceptions.IllegalArgumentNameException;
 import com.microservice.stockmicroservice.domain.model.Brand;
-import com.microservice.stockmicroservice.domain.spi.Brand.IBrandPersistencePort;
-import com.microservice.stockmicroservice.domain.util.InputValidate;
+import com.microservice.stockmicroservice.domain.spi.brand.IBrandPersistencePort;
 import com.microservice.stockmicroservice.domain.util.Pagination.PageableRequest;
 import com.microservice.stockmicroservice.domain.util.Pagination.Paginated;
+import com.microservice.stockmicroservice.domain.util.InputValidate;
+import com.microservice.stockmicroservice.domain.util.Pagination.Sorted;
 
 public class BrandUseCase implements IBrandServicePort {
     private final IBrandPersistencePort brandPersistencePort;
@@ -28,15 +29,22 @@ public class BrandUseCase implements IBrandServicePort {
                 || !InputValidate.isValidLength(brand.getDescription(), 120)) {
             throw new IllegalArgumentDescriptionException();
         }
-        if (!brandPersistencePort.existsByName(brand.getName())) {
+        if(!brandPersistencePort.existsByName(brand.getName().trim())){
             brandPersistencePort.create(brand);
-        } throw new BrandAlreadyExistsException();
+        }else{
+            throw new BrandAlreadyExistsException();
+        }
     }
 
     @Override
-    public Paginated<Brand> listAllBrands(PageableRequest pageableRequest) {
+    public Paginated<Brand> listAllBrands(int page, int size, String sort, Sorted sorted) {
+        PageableRequest pageableRequest = new PageableRequest.Builder()
+                .setPage(page)
+                .setSize(size)
+                .setSort(sort)
+                .setSorted(sorted)
+                .build();
         return brandPersistencePort.listAllBrands(pageableRequest);
     }
-
 
 }

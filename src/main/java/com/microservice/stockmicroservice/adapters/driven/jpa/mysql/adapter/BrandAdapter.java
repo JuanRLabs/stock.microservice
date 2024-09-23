@@ -4,7 +4,7 @@ import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.entity.Brand
 import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.mapper.IBrandEntityMapper;
 import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.repository.IBrandRepository;
 import com.microservice.stockmicroservice.domain.model.Brand;
-import com.microservice.stockmicroservice.domain.spi.Brand.IBrandPersistencePort;
+import com.microservice.stockmicroservice.domain.spi.brand.IBrandPersistencePort;
 import com.microservice.stockmicroservice.domain.util.Pagination.PageableRequest;
 import com.microservice.stockmicroservice.domain.util.Pagination.Paginated;
 import lombok.RequiredArgsConstructor;
@@ -34,12 +34,21 @@ public class BrandAdapter implements IBrandPersistencePort {
     }
 
     @Override
+    public boolean existsBrand(Long id) {
+        return brandRepository.existsById(id);
+    }
+
+    @Override
+    public Brand getById(Long id) {
+        return brandEntityMapper.toModel(brandRepository.findById(id).orElse(null) );
+    }
+
+    @Override
     public Paginated<Brand> listAllBrands(PageableRequest pageableRequest) {
         Sort sort = Sort.by(Sort.Direction.fromString(pageableRequest.getSorted().name()), pageableRequest.getSort());
         Pageable pageable = PageRequest.of(pageableRequest.getPage(), pageableRequest.getSize(), sort);
         Page<BrandEntity> responseRepository = brandRepository.findAll(pageable);
         List<Brand> brands = brandEntityMapper.toModelList(responseRepository);
-        return new Paginated<Brand>(brands, responseRepository.getTotalPages(), responseRepository.getTotalElements());
+        return new Paginated<>(brands, pageableRequest, responseRepository.getTotalPages(), responseRepository.getTotalElements());
     }
-
 }
