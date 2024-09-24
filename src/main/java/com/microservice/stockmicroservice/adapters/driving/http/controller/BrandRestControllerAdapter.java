@@ -5,7 +5,6 @@ import com.microservice.stockmicroservice.adapters.driving.http.dto.response.Bra
 import com.microservice.stockmicroservice.adapters.driving.http.mapper.IBrandRequestMapper;
 import com.microservice.stockmicroservice.adapters.driving.http.mapper.IBrandResponseMapper;
 import com.microservice.stockmicroservice.domain.api.IBrandServicePort;
-import com.microservice.stockmicroservice.domain.util.Pagination.PageableRequest;
 import com.microservice.stockmicroservice.domain.util.Pagination.Paginated;
 import com.microservice.stockmicroservice.domain.util.Pagination.Sorted;
 import lombok.RequiredArgsConstructor;

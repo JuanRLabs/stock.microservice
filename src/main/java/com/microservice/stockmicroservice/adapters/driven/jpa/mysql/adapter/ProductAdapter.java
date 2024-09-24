@@ -4,12 +4,10 @@ import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.entity.Produ
 import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.mapper.IProductEntityMapper;
 import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.repository.IBrandRepository;
 import com.microservice.stockmicroservice.adapters.driven.jpa.mysql.repository.IProductRepository;
-import com.microservice.stockmicroservice.domain.model.Category;
 import com.microservice.stockmicroservice.domain.model.Product;
 import com.microservice.stockmicroservice.domain.spi.product.IProductPersistencePort;
 import com.microservice.stockmicroservice.domain.util.Pagination.PageableRequest;
 import com.microservice.stockmicroservice.domain.util.Pagination.Paginated;
-import com.microservice.stockmicroservice.domain.util.Pagination.Sorted;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

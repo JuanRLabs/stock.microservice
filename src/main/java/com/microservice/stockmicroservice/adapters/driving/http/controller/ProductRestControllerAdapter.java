@@ -6,7 +6,6 @@ import com.microservice.stockmicroservice.adapters.driving.http.mapper.IProductR
 import com.microservice.stockmicroservice.adapters.driving.http.mapper.IProductResponseMapper;
 import com.microservice.stockmicroservice.domain.api.IProductServicePort;
 import com.microservice.stockmicroservice.domain.model.Product;
-import com.microservice.stockmicroservice.domain.util.Pagination.PageableRequest;
 import com.microservice.stockmicroservice.domain.util.Pagination.Paginated;
 import com.microservice.stockmicroservice.domain.util.Pagination.Sorted;
 import lombok.RequiredArgsConstructor;

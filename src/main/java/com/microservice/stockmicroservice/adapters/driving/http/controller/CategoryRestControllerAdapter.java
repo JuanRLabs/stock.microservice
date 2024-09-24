@@ -5,7 +5,6 @@ import com.microservice.stockmicroservice.adapters.driving.http.dto.response.Cat
 import com.microservice.stockmicroservice.adapters.driving.http.mapper.ICategoryRequestMapper;
 import com.microservice.stockmicroservice.adapters.driving.http.mapper.ICategoryResponseMapper;
 import com.microservice.stockmicroservice.domain.api.ICategoryServicePort;
-import com.microservice.stockmicroservice.domain.util.Pagination.PageableRequest;
 import com.microservice.stockmicroservice.domain.util.Pagination.Paginated;
 import com.microservice.stockmicroservice.domain.util.Pagination.Sorted;
 import lombok.RequiredArgsConstructor;

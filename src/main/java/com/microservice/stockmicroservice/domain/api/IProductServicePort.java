@@ -1,7 +1,6 @@
 package com.microservice.stockmicroservice.domain.api;
 
 import com.microservice.stockmicroservice.domain.model.Product;
-import com.microservice.stockmicroservice.domain.util.Pagination.PageableRequest;
 import com.microservice.stockmicroservice.domain.util.Pagination.Paginated;
 import com.microservice.stockmicroservice.domain.util.Pagination.Sorted;
 
