@@ -1,16 +1,12 @@
 package com.microservice.stockmicroservice.domain.api.usecase;
 
 import com.microservice.stockmicroservice.domain.exceptions.EmptyFieldException;
-import com.microservice.stockmicroservice.domain.exceptions.IllegalBrandException;
 import com.microservice.stockmicroservice.domain.exceptions.ProductAlreadyExistsException;
 import com.microservice.stockmicroservice.domain.model.Brand;
 import com.microservice.stockmicroservice.domain.model.Category;
 import com.microservice.stockmicroservice.domain.model.Product;
 import com.microservice.stockmicroservice.domain.spi.brand.IBrandPersistencePort;
 import com.microservice.stockmicroservice.domain.spi.product.IProductPersistencePort;
-import com.microservice.stockmicroservice.domain.util.Pagination.PageableRequest;
-import com.microservice.stockmicroservice.domain.util.Pagination.Paginated;
-import com.microservice.stockmicroservice.domain.util.Pagination.Sorted;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -19,10 +15,8 @@ import org.mockito.MockitoAnnotations;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
